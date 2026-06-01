@@ -490,21 +490,40 @@ body {
           <p class="pdf-meta">Arabic · 21 pages · SDAIA · May 2025</p>
         </div>
       </div>
-      <a class="dl-btn" href="https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf" target="_blank" data-filename="NAII.pdf">⬇ Download</a>
+      <div style="display:flex;gap:8px;">
+        <a class="dl-btn" href="https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf" target="_blank" style="background:#1a3a6e;color:#fff;border-color:#1a3a6e;">⬇ Download PDF</a>
+        <a class="dl-btn" href="https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf" target="_blank">↗ Open in new tab</a>
+      </div>
     </div>
-    <iframe class="pdf-embed" src="https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf"></iframe>
+    <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;padding:60px 40px;background:#f5f5f2;text-align:center;">
+      <div style="width:64px;height:64px;background:#EEEDFE;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#26215C;font-weight:700;">PDF</div>
+      <div>
+        <p style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:6px;">Full Source Document</p>
+        <p style="font-size:13px;color:#888;max-width:380px;line-height:1.65;">The complete official document is hosted on the SDAIA website. Click either button above to open or download it.</p>
+      </div>
+      <a href="https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;font-size:13px;font-weight:500;padding:10px 22px;border-radius:9px;text-decoration:none;">
+        ↗ Open Full Document on SDAIA.gov.sa
+      </a>
+      <p style="font-size:11px;color:#bbb;margin-top:4px;">https://sdaia.gov.sa/ar/SDAIA/about/Files/NAII.pdf</p>
+    </div>
   </div>
-
 </div>
 
 <script>
-function showTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', ['en','ar','pdf'][i] === name);
-  });
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
+function showTab(t){
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(el){ el.classList.remove('active'); });
+  var tabMap = {'en':0,'ar':1,'pdf':2};
+  if(tabs[tabMap[t]]) tabs[tabMap[t]].classList.add('active');
+  document.querySelectorAll('.panel').forEach(function(p){ p.style.display='none'; });
+  var panel = document.getElementById('panel-'+t);
+  if(panel) panel.style.display='block';
 }
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.panel').forEach(function(p){ p.style.display='none'; });
+  var active = document.querySelector('.panel.active');
+  if(active) active.style.display='block';
+});
 </script>
 
 </body>
