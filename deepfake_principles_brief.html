@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepfake Principles | مبادئ التزييف العميق</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;padding:32px 16px;color:#1a1a18;}
+.page{max-width:900px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:.5px solid rgba(0,0,0,.1);}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#0e1f3d 0%,#1a3a6e 60%,#1d5a8a 100%);padding:22px 28px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.hdr-left{flex:1;}
+.badge{display:inline-block;background:#2d6fa8;color:#fff;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;}
+.hdr-en{font-size:17px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:4px;}
+.hdr-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:15px;font-weight:500;color:#a8cdf5;direction:rtl;text-align:right;margin-bottom:6px;}
+.hdr-meta{font-size:11px;color:#7aaee8;}
+.stats{display:flex;flex-direction:column;gap:6px;align-items:flex-end;}
+.stat{background:rgba(255,255,255,.12);border:.5px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;text-align:center;}
+.sn{font-size:16px;font-weight:600;color:#fff;}
+.sl{font-size:10px;color:#a8cdf5;}
+
+/* TABS */
+.tabs{display:flex;border-bottom:.5px solid rgba(0,0,0,.1);background:#fafaf8;}
+.tab{flex:1;padding:12px;text-align:center;font-size:12px;font-weight:500;color:#888780;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;user-select:none;}
+.tab.active{color:#1a3a6e;border-bottom-color:#1a3a6e;background:#fff;}
+.tab:hover:not(.active){color:#444;background:#f5f5f2;}
+
+/* PANELS */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* SHARED */
+.bwrap{padding:24px 28px;}
+.sec{padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);}
+.sec:last-child{border-bottom:none;padding-bottom:0;}
+.lbl{font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:7px;}
+.lbl-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:9.5px;font-weight:600;color:#aaa;margin-bottom:7px;direction:rtl;text-align:right;}
+.txt{font-size:13px;color:#444441;line-height:1.75;}
+.txt-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:13px;color:#444441;line-height:1.85;direction:rtl;text-align:right;}
+
+/* MALICIOUS TYPES */
+.threats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:9px;}
+.threat{padding:12px 14px;border-radius:10px;border:.5px solid;}
+.threat-num{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.threat-title{font-size:12px;font-weight:600;margin-bottom:5px;}
+.threat-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;direction:rtl;margin-bottom:5px;}
+.threat-body{font-size:11px;line-height:1.65;}
+.threat-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;line-height:1.7;direction:rtl;}
+.t1{background:#FCEBEB;border-color:#F09595;}.t1 .threat-num,.t1 .threat-title,.t1 .threat-title-ar{color:#A32D2D;}.t1 .threat-body,.t1 .threat-body-ar{color:#8B2626;}
+.t2{background:#FAEEDA;border-color:#FAC775;}.t2 .threat-num,.t2 .threat-title,.t2 .threat-title-ar{color:#412402;}.t2 .threat-body,.t2 .threat-body-ar{color:#633806;}
+.t3{background:#FAECE7;border-color:#F5C4B3;}.t3 .threat-num,.t3 .threat-title,.t3 .threat-title-ar{color:#712B13;}.t3 .threat-body,.t3 .threat-body-ar{color:#993C1D;}
+
+/* AUDIENCE GUIDELINES */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px;}
+.abox{padding:13px 15px;border-radius:10px;border:.5px solid;}
+.abox-num{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.abox-title{font-size:13px;font-weight:600;margin-bottom:6px;}
+.abox-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;direction:rtl;margin-bottom:6px;}
+.abox-body{font-size:11.5px;line-height:1.65;}
+.abox-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11.5px;line-height:1.7;direction:rtl;}
+.a1{background:#EEEDFE;border-color:#CECBF6;}.a1 .abox-num,.a1 .abox-title,.a1 .abox-title-ar{color:#26215C;}.a1 .abox-body,.a1 .abox-body-ar{color:#534AB7;}
+.a2{background:#E1F5EE;border-color:#9FE1CB;}.a2 .abox-num,.a2 .abox-title,.a2 .abox-title-ar{color:#085041;}.a2 .abox-body,.a2 .abox-body-ar{color:#0F6E56;}
+.a3{background:#E6F1FB;border-color:#B5D4F4;}.a3 .abox-num,.a3 .abox-title,.a3 .abox-title-ar{color:#042C53;}.a3 .abox-body,.a3 .abox-body-ar{color:#185FA5;}
+.a4{background:#EAF3DE;border-color:#C0DD97;}.a4 .abox-num,.a4 .abox-title,.a4 .abox-title-ar{color:#173404;}.a4 .abox-body,.a4 .abox-body-ar{color:#3B6D11;}
+
+/* DETECTION SIGNALS */
+.dsigs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:9px;}
+.dsig{padding:10px 12px;border-radius:9px;background:#fafaf8;border-left:3px solid #1a3a6e;}
+.dsig-ar{padding:10px 12px;border-radius:9px;background:#fafaf8;border-right:3px solid #1a3a6e;border-left:none;}
+.dsig-title{font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;}
+.dsig-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;direction:rtl;}
+.dsig-body{font-size:10.5px;color:#5F5E5A;line-height:1.6;}
+.dsig-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:10.5px;color:#5F5E5A;line-height:1.65;direction:rtl;}
+
+/* SECTORS */
+.sectors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px;}
+.sector{padding:11px 12px;border-radius:9px;background:#fafaf8;border:.5px solid rgba(0,0,0,.08);}
+.sector-icon{font-size:22px;margin-bottom:5px;}
+.sector-name{font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;}
+.sector-name-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;direction:rtl;}
+.sector-body{font-size:11px;color:#5F5E5A;line-height:1.55;}
+.sector-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;color:#5F5E5A;line-height:1.6;direction:rtl;}
+
+/* INCIDENT STEPS */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px;}
+.step{padding:11px 13px;border-radius:9px;background:#fafaf8;border:.5px solid rgba(0,0,0,.08);}
+.step-n{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a3a6e;margin-bottom:3px;}
+.step-title{font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;}
+.step-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;direction:rtl;}
+.step-body{font-size:11px;color:#5F5E5A;line-height:1.6;}
+.step-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;color:#5F5E5A;line-height:1.65;direction:rtl;}
+
+.rel-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.rel-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;}
+
+/* PDF panel */
+.pdf-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#fafaf8;border-bottom:.5px solid rgba(0,0,0,.08);}
+.pdf-info{display:flex;align-items:center;gap:10px;}
+.pdf-icon{width:32px;height:32px;border-radius:7px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1a3a6e;font-weight:700;}
+.pdf-name{font-size:13px;font-weight:500;color:#1a1a18;}
+.pdf-meta-txt{font-size:11px;color:#888;}
+.dl-btn{font-size:11px;padding:6px 13px;border-radius:8px;border:.5px solid rgba(0,0,0,.15);background:#fff;color:#333;text-decoration:none;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <span class="badge">Guidelines · مبادئ</span>
+    <p class="hdr-en">Deepfake Principles: Reducing Risks While Fostering Innovation</p>
+    <p class="hdr-ar">مبادئ التزييف العميق: الحد من المخاطر مع تعزيز الابتكار</p>
+    <p class="hdr-meta">SDAIA (سدايا) · 2025 · Arabic · 56 pages · 10 Chapters + Appendix</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="sn">4</div><div class="sl">Audiences</div></div>
+    <div class="stat"><div class="sn">3</div><div class="sl">Threat types</div></div>
+    <div class="stat"><div class="sn">6</div><div class="sl">Sectors</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="show('en')">🇬🇧 English Brief</div>
+  <div class="tab" onclick="show('ar')">🇸🇦 الموجز العربي</div>
+  <div class="tab" onclick="show('pdf')">📄 Full Document</div>
+</div>
+
+<!-- ══════════ ENGLISH ══════════ -->
+<div id="p-en" class="panel active">
+<div class="bwrap">
+
+  <div class="sec">
+    <p class="lbl">What this document is</p>
+    <p class="txt">SDAIA's official guidelines on deepfake technology, with the subtitle "Reducing Risks While Fostering Innovation." It is one of the few national deepfake frameworks in the region that explicitly acknowledges deepfakes have both malicious and legitimate uses — and treats them accordingly, with obligations proportional to risk. The document applies to three primary groups: developers of deepfake systems, content creators who use deepfake tools, and end users of deepfake content. It aligns with Saudi Arabia's PDPL, the Cybercrime Law, and SDAIA's AI Ethics Principles. A key philosophical stance: this document does not ban deepfakes; it channels them toward responsible, ethical application while protecting individuals and society from harm.</p>
+  </div>
+
+  <div class="sec">
+    <p class="lbl">The 3 malicious use categories the document directly addresses</p>
+    <div class="threats">
+      <div class="threat t1">
+        <p class="threat-num">Type 1</p>
+        <p class="threat-title">Fraud & Financial Scams</p>
+        <p class="threat-body">Deepfakes used to impersonate trusted figures in video or voice calls to extract sensitive data or authorize financial transactions. Real case cited: a multinational employee was deceived into transferring a large sum to fraudsters who used deepfake video of a senior executive. Challenges traditional security measures and demands advanced detection technologies.</p>
+      </div>
+      <div class="threat t2">
+        <p class="threat-num">Type 2</p>
+        <p class="threat-title">Unauthorized Manipulation</p>
+        <p class="threat-body">Creating explicit or compromising content of individuals without consent — used for harassment, blackmail, or reputational damage. Victims suffer severe emotional distress, long-term psychological impacts, strained personal relationships, and professional setbacks. Violates personal privacy and trust and demands strong legal and technical protections.</p>
+      </div>
+      <div class="threat t3">
+        <p class="threat-num">Type 3</p>
+        <p class="threat-title">Disinformation & Propaganda</p>
+        <p class="threat-body">Fabricating videos of political figures making false statements to manipulate public opinion, destabilize communities, and undermine institutional trust. Real case: fabricated videos of a political candidate caused a measurable drop in support before being debunked. The persuasive nature of deepfakes makes them a serious threat to political discourse.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl">Guidelines for the 4 audiences — what each is required to do</p>
+    <div class="agrid">
+      <div class="abox a1">
+        <p class="abox-num">Section 5 — Developers</p>
+        <p class="abox-title">Building deepfake systems</p>
+        <p class="abox-body"><strong>Regulatory compliance:</strong> Comply with GDPR, CCPA, Saudi PDPL, and the Cybercrime Law — including embedding compliance checks into development environments using policy-as-code tools (e.g. Terraform, Cedar Policy Language).<br><br><strong>Data privacy:</strong> Implement strong data protection (encryption, MFA, access controls). Apply Privacy-by-Design — minimal data collection, anonymization, regular deletion cycles. Use consent management systems for all personal training data. Allow individuals to remove their data from training sets.<br><br><strong>Transparency:</strong> Document all model components (data sources, algorithms, decision process) in CI/CD pipelines. Integrate explainability tools (LIME, SHAP). Develop non-intrusive digital watermarks resistant to editing attacks (e.g. compression, cropping, re-rendering). Publish regular transparency reports.<br><br><strong>Accountability:</strong> Apply HITL (Human-in-the-Loop) at training, validation, and deployment stages. Build role-based access control (RBAC) and version control for all model iterations. Create automated reporting systems to detect and report unauthorized deepfake use.</p>
+      </div>
+      <div class="abox a2">
+        <p class="abox-num">Section 6 — Content Creators</p>
+        <p class="abox-title">Producing deepfake content</p>
+        <p class="abox-body"><strong>Regulatory compliance:</strong> Ensure all content complies with PDPL, GDPR, CCPA, IP laws, and Saudi Cybercrime Law. No prohibited content may be created, reproduced, or distributed.<br><br><strong>Data privacy:</strong> Obtain written, explicit consent from individuals before using their likeness or voice. Store consent records securely with encryption, backups, and audit trails. Provide data subjects full information on how their data will be used. Allow consent withdrawal at any time. Use data only for stated, consented purposes.<br><br><strong>Transparency:</strong> Apply visible, tamper-resistant watermarks to all deepfake content across all formats and media types. Maintain detailed creation logs including data sources, algorithms, and tools. Use automated watermarking systems integrated into production workflows.<br><br><strong>Accountability:</strong> Take full responsibility for content created and ensure regulatory compliance. Use secure, monitored distribution channels. Implement Digital Rights Management (DRM) and secure CDNs to prevent unauthorized access or alteration.</p>
+      </div>
+      <div class="abox a3">
+        <p class="abox-num">Section 7 — Regulators</p>
+        <p class="abox-title">Governing deepfake platforms</p>
+        <p class="abox-body"><strong>Platform oversight:</strong> Mandate internet intermediaries, media service providers, and social media platforms to implement mechanisms for reporting and removing identified harmful or misleading deepfake content. Prioritize high-risk cases (financial fraud, identity theft, political manipulation). Conduct regular monitoring and impose penalties for non-compliance.<br><br><strong>Risk assessment:</strong> Conduct comprehensive assessments of deepfake systems used or approved nationally. Create formal approval processes before commercial deployment. Develop sector-specific risk assessment frameworks for government entities. Develop and enforce content provenance standards (e.g. C2PA) for transparency and accountability.<br><br><strong>Penalties:</strong> Ensure penalties are proportional to intent, impact, and frequency. Establish leniency provisions for simple or accidental uses.<br><br><strong>Transparency & education:</strong> Require annual government usage reports. Implement regular audits. Mandate annual training for all government employees on deepfake ethics, law, and detection techniques.</p>
+      </div>
+      <div class="abox a4">
+        <p class="abox-num">Section 8 — End Users</p>
+        <p class="abox-title">Detecting deepfakes & preventing harm</p>
+        <p class="abox-body"><strong>Evaluate the message:</strong> Verify source credibility (official accounts, trusted sources). Check whether the content is consistent with the source's normal behavior. Be cautious of messages demanding urgent action (clicking links, providing personal data).<br><br><strong>Analyze visual & audio elements:</strong> Unnatural facial expressions near mouth, eyes, brows. Lighting and shadow inconsistencies vs. environment. Lip-sync misalignment — especially complex sounds. Blinking patterns that are too slow, too fast, or emotionally out of context. Edge artifacts at hairline, ears, or background boundaries. Sudden skin texture or color anomalies during movement.<br><br><strong>Use detection tools:</strong> AI-powered tools: Deepware Scanner, Sensity. Content authenticity platforms: Adobe Content Authenticity Initiative, Truepic. Metadata analysis to check file creation history. Digital watermark verification systems.<br><br><strong>Report incidents:</strong> Report to the platform immediately (citing their terms of service). In Saudi Arabia: report via portal 330330 or "Kollona Amn" (كلنا أمن) app. For financial fraud: also notify SAMA (Saudi Central Bank). For legal recourse: appoint a digital rights lawyer and engage digital forensics specialists.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl">6 legitimate (non-malicious) sectors where deepfakes have approved applications</p>
+    <div class="sectors">
+      <div class="sector">
+        <div class="sector-icon">📣</div>
+        <p class="sector-name">Marketing</p>
+        <p class="sector-body">Personalized, creative advertisements and AI spokespersons for SMEs — can partner with SDAIA for development. Wide-scale personalized marketing at scale.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🎬</div>
+        <p class="sector-name">Entertainment</p>
+        <p class="sector-body">Digital actors and performers, reduced production costs, multilingual dubbing without original actors, virtual event avatars for Saudi performers.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🛒</div>
+        <p class="sector-name">Retail</p>
+        <p class="sector-body">Virtual try-on for clothing and accessories — customers see how products look in real-time without physical testing. Personalized shopping experiences.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🎓</div>
+        <p class="sector-name">Education</p>
+        <p class="sector-body">Interactive virtual instructors for remote areas. Personalized, adaptive learning content. More engaging and accessible learning experiences for students.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏥</div>
+        <p class="sector-name">Healthcare</p>
+        <p class="sector-body">Medical training simulations — realistic patient case scenarios for medical schools. Voice reconstruction for medical conditions. Advanced surgical procedure modeling.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏛️</div>
+        <p class="sector-name">Culture & Heritage</p>
+        <p class="sector-body">Recreating historical events in Saudi history (e.g. scenes from the era of King Abdulaziz). Preserving local dialects. Making cultural heritage more accessible.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl">Victim incident response — the 6 steps for those affected</p>
+    <div class="steps">
+      <div class="step">
+        <p class="step-n">Step 1</p>
+        <p class="step-title">Document evidence immediately</p>
+        <p class="step-body">Save links, screenshots, and metadata. Create a comprehensive file with all relevant evidence: dates, times, platform names, URLs. This documentation will be critical for legal proceedings or reporting to authorities.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">Step 2</p>
+        <p class="step-title">Identify the type of malicious use</p>
+        <p class="step-body">Assess whether the deepfake is being used for fraud, harassment/blackmail, reputational damage, or unauthorized data sharing. Classify the deepfake media based on the malicious intent so reporting is accurate.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">Step 3</p>
+        <p class="step-title">Report to the platform</p>
+        <p class="step-body">Report immediately via the platform's reporting mechanism (Facebook, X/Twitter, etc.), citing specific terms of service violations around privacy and harmful content. Most platforms have strict policies against privacy-violating content. Request removal and seek support from Cyber Smile Foundation if needed.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">Step 4</p>
+        <p class="step-title">Report to Saudi authorities</p>
+        <p class="step-body">Report via portal 330330 or the "كلنا أمن" (Kollona Amn) app. Report to the Ministry of Interior's cybercrime unit via the electronic portal or in person at a police station. For financial fraud or identity theft, also notify SAMA and the victim's bank. The CITC (هيئة الاتصالات) must provide technical support to authorities during investigations.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">Step 5</p>
+        <p class="step-title">Seek legal counsel & forensics</p>
+        <p class="step-body">Appoint a lawyer specializing in digital rights and data protection law, providing all evidence and legal arguments for civil and criminal proceedings. Engage digital forensics experts to trace the deepfake's origin and document findings accurately for use in legal contexts.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">Step 6</p>
+        <p class="step-title">Strengthen personal security</p>
+        <p class="step-body">Enable 2FA on all online accounts. Activate privacy settings across all platforms. Limit sharing of high-resolution personal photos and videos. Subscribe to monitoring services to protect against further misuse of personal data.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="padding-bottom:0;border-bottom:none;">
+    <p class="lbl">Related documents in this library</p>
+    <div class="rel-row">
+      <span class="rel-tag">AI Ethics Principles</span>
+      <span class="rel-tag">GenAI Principles — Public</span>
+      <span class="rel-tag">GenAI Principles — Government</span>
+      <span class="rel-tag">AI Adoption Framework</span>
+      <span class="rel-tag">NAII National AI Index</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ ARABIC ══════════ -->
+<div id="p-ar" class="panel">
+<div class="bwrap" style="direction:rtl;">
+
+  <div class="sec">
+    <p class="lbl-ar">ما هذه الوثيقة؟</p>
+    <p class="txt-ar">المبادئ التوجيهية الرسمية لسدايا بشأن تقنية التزييف العميق، بعنوان فرعي: "الحد من المخاطر مع تعزيز الابتكار". تُعدّ من أوائل الأطر التنظيمية الإقليمية التي تعترف صراحةً بأن للتزييف العميق استخدامات خبيثة ومشروعة على حد سواء، وتتعامل مع كلٍّ منها بالتزامات متناسبة مع المخاطر. تنطبق على ثلاث مجموعات رئيسية: المطورون، وصنّاع المحتوى، ومستخدمو تقنيات التزييف العميق. تتوافق مع نظام حماية البيانات الشخصية (PDPL) ونظام مكافحة الجرائم الإلكترونية ومبادئ أخلاقيات الذكاء الاصطناعي. الموقف الفلسفي الجوهري: الوثيقة لا تحظر التزييف العميق، بل توجّهه نحو التطبيق المسؤول الأخلاقي مع حماية الأفراد والمجتمع من الأضرار.</p>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">فئات الاستخدام الخبيث الثلاث التي تعالجها الوثيقة مباشرةً</p>
+    <div class="threats">
+      <div class="threat t3">
+        <p class="threat-num">النوع الثالث</p>
+        <p class="threat-title-ar">التضليل والدعاية</p>
+        <p class="threat-body-ar">تزوير مقاطع فيديو لشخصيات سياسية تُدلي ببيانات كاذبة للتأثير على الرأي العام وزعزعة استقرار المجتمعات وتقويض ثقة الجمهور بالمؤسسات. مثال موثق: مقاطع مزيفة لمرشح سياسي أدت إلى انخفاض ملحوظ في شعبيته قبل دحضها.</p>
+      </div>
+      <div class="threat t2">
+        <p class="threat-num">النوع الثاني</p>
+        <p class="threat-title-ar">التلاعب غير المصرح به</p>
+        <p class="threat-body-ar">إنشاء محتوى صريح أو مسيء بصورة الأفراد دون موافقتهم — للمضايقة أو الابتزاز أو الإضرار بالسمعة. يعاني الضحايا من ضائقة عاطفية شديدة ومشاكل نفسية طويلة الأمد ونكسات مهنية. انتهاك صريح للخصوصية والثقة يستوجب حماية قانونية وتقنية قوية.</p>
+      </div>
+      <div class="threat t1">
+        <p class="threat-num">النوع الأول</p>
+        <p class="threat-title-ar">العمليات الاحتيالية</p>
+        <p class="threat-body-ar">انتحال شخصية أفراد موثوق بهم في مكالمات فيديو أو صوتية لانتزاع معلومات حساسة أو تفويض معاملات مالية. مثال موثق: موظف في شركة متعددة الجنسيات حوّل مبلغاً ضخماً للمحتالين عبر مكالمة فيديو مزيفة لمسؤول تنفيذي كبير.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">إرشادات الفئات الأربع — ما المطلوب من كل فئة؟</p>
+    <div class="agrid">
+      <div class="abox a4">
+        <p class="abox-num">القسم 8 — المستخدمون</p>
+        <p class="abox-title-ar">اكتشاف التزييف العميق ومنع المخاطر</p>
+        <p class="abox-body-ar"><strong>تقييم الرسالة:</strong> التحقق من موثوقية المصدر. تقييم ما إذا كان المحتوى يتماشى مع السلوك المعتاد للمصدر. الحذر من الرسائل التي تحث على إجراء فوري.<br><br><strong>تحليل العناصر السمعية والبصرية:</strong> تعبيرات الوجه غير الطبيعية حول الفم والعينين والحاجبين. تناقضات الإضاءة والظلال. عدم تزامن حركة الشفاه مع الصوت. أنماط الرمش غير المنتظمة. الشذوذات عند حواف الوجه أو الشعر. تغيرات مفاجئة في نسيج الجلد أو لونه.<br><br><strong>استخدام أدوات الكشف:</strong> Deepware Scanner وSensity (كشف بالذكاء الاصطناعي). Adobe Content Authenticity Initiative وTruepic (أصالة المحتوى). تحليل البيانات الوصفية والعلامات المائية الرقمية.<br><br><strong>الإبلاغ:</strong> الإبلاغ للمنصة فوراً. في السعودية: بوابة 330330 أو تطبيق كلنا أمن. للاحتيال المالي: إبلاغ سامة والبنك.</p>
+      </div>
+      <div class="abox a3">
+        <p class="abox-num">القسم 7 — الجهات التنظيمية</p>
+        <p class="abox-title-ar">تنظيم منصات التزييف العميق</p>
+        <p class="abox-body-ar"><strong>تنظيم المنصات:</strong> إلزام وسطاء الإنترنت ومنصات التواصل الاجتماعي بآليات إبلاغ وإزالة فورية للتزييف العميق الضار. إجراء مراقبة منتظمة وفرض عقوبات على المخالفين.<br><br><strong>تقييم المخاطر:</strong> إجراء تقييمات شاملة لتقنيات التزييف العميق المستخدمة وطنياً. إنشاء عمليات موافقة رسمية قبل النشر التجاري. إنشاء أطر تقييم مخاطر خاصة بالجهات الحكومية. تطوير معايير استناد المحتوى (C2PA) لضمان الشفافية.<br><br><strong>العقوبات والشفافية:</strong> ضمان تناسب العقوبات مع النية والتأثير والتكرار. تكليف بإعداد تقارير استخدام حكومية سنوية. إلزام الموظفين الحكوميين بالتدريب السنوي على الأخلاقيات والتقنية والقانون.</p>
+      </div>
+      <div class="abox a2">
+        <p class="abox-num">القسم 6 — صنّاع المحتوى</p>
+        <p class="abox-title-ar">إنتاج محتوى التزييف العميق</p>
+        <p class="abox-body-ar"><strong>الامتثال:</strong> ضمان توافق المحتوى مع PDPL وGDPR وCCPA وقوانين الملكية الفكرية ونظام الجرائم الإلكترونية. لا يجوز إنتاج أي محتوى محظور قانوناً أو نشره.<br><br><strong>الخصوصية:</strong> الحصول على موافقة كتابية صريحة قبل استخدام صورة أي شخص أو صوته. تخزين سجلات الموافقة بأمان مع تشفير ونسخ احتياطية ومسارات تدقيق. السماح بسحب الموافقة في أي وقت.<br><br><strong>الشفافية:</strong> تطبيق علامات مائية مرئية ومقاومة للتلاعب على جميع محتوى التزييف العميق عبر جميع التنسيقات. الاحتفاظ بسجلات تفصيلية لعملية الإنشاء.<br><br><strong>المساءلة:</strong> تحمّل مسؤولية المحتوى المُنشأ. توزيع المحتوى عبر قنوات آمنة وخاضعة للمراقبة. تنفيذ إدارة الحقوق الرقمية (DRM).</p>
+      </div>
+      <div class="abox a1">
+        <p class="abox-num">القسم 5 — المطورون</p>
+        <p class="abox-title-ar">بناء أنظمة التزييف العميق</p>
+        <p class="abox-body-ar"><strong>الامتثال التنظيمي:</strong> الامتثال لـ GDPR وCCPA ونظام PDPL ونظام مكافحة الجرائم الإلكترونية — بما فيه دمج فحوصات الامتثال في بيئة التطوير باستخدام أدوات مثل Terraform وCedar Policy Language.<br><br><strong>خصوصية البيانات:</strong> تطبيق تشفير AES-256 والمصادقة المتعددة العوامل. اعتماد مبدأ الحد الأدنى من البيانات وإخفاء الهوية ودورات حذف منتظمة. أنظمة إدارة الموافقة مع التوثيق الآمن. السماح للأفراد بحذف بياناتهم من بيانات التدريب.<br><br><strong>الشفافية:</strong> توثيق كل مكونات النموذج في مسارات CI/CD. دمج أدوات قابلية التفسير (LIME وSHAP). تطوير علامات مائية رقمية مقاومة لهجمات التحرير. نشر تقارير شفافية دورية.<br><br><strong>المساءلة:</strong> تطبيق نموذج HITL في مراحل التدريب والتحقق والنشر. بناء إطار حوكمة شامل مع ضوابط وصول RBAC. إنشاء نظام تقارير آلي لاكتشاف الاستخدام غير المشروع.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">القطاعات الستة للاستخدامات المشروعة (غير الخبيثة)</p>
+    <div class="sectors">
+      <div class="sector">
+        <div class="sector-icon">📣</div>
+        <p class="sector-name-ar">التسويق</p>
+        <p class="sector-body-ar">إعلانات مخصصة ومبتكرة ومتحدثون افتراضيون — بالتعاون مع هيئة التجارة وسدايا لدعم الشركات الصغيرة والمتوسطة.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🎬</div>
+        <p class="sector-name-ar">الترفيه</p>
+        <p class="sector-body-ar">ممثلون رقميون وتخفيض تكاليف الإنتاج ودبلجة متعددة اللغات وأفاتارات افتراضية للمشاهير السعوديين في الفعاليات.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🛒</div>
+        <p class="sector-name-ar">تجارة التجزئة</p>
+        <p class="sector-body-ar">تجربة الملابس والإكسسوارات افتراضياً — رؤية المنتجات بشكل حقيقي دون تجربة مادية. تجارب تسوق مخصصة.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🎓</div>
+        <p class="sector-name-ar">التعليم</p>
+        <p class="sector-body-ar">مدرسون افتراضيون تفاعليون في المناطق النائية. محتوى تعليمي مخصص وتكيّفي. تجارب تعلم أكثر جذباً وإتاحةً للطلاب.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏥</div>
+        <p class="sector-name-ar">الرعاية الصحية</p>
+        <p class="sector-body-ar">محاكاة تدريب طبي واقعية لكليات الطب. إعادة بناء الصوت لحالات طبية. نمذجة متقدمة للإجراءات الجراحية.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏛️</div>
+        <p class="sector-name-ar">الثقافة والتراث</p>
+        <p class="sector-body-ar">إعادة تمثيل أحداث تاريخية سعودية (مثل أحداث من عهد الملك عبدالعزيز). الحفاظ على اللهجات المحلية وإتاحة التراث الثقافي.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">بروتوكول الاستجابة للحوادث — الخطوات الست للضحايا</p>
+    <div class="steps">
+      <div class="step">
+        <p class="step-n">الخطوة 1</p>
+        <p class="step-title-ar">توثيق الأدلة فوراً</p>
+        <p class="step-body-ar">حفظ الروابط ولقطات الشاشة والبيانات الوصفية. إنشاء ملف شامل بجميع الأدلة: التواريخ والأوقات وأسماء المنصات والروابط. هذا التوثيق حاسم للإجراءات القانونية أو إبلاغ السلطات.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">الخطوة 2</p>
+        <p class="step-title-ar">التعرف على نوع الاستخدام الخبيث</p>
+        <p class="step-body-ar">تقييم ما إذا كان التزييف العميق يُستخدم للاحتيال أو المضايقة أو الابتزاز أو التشهير أو النشر غير المصرح للبيانات. تصنيف الوسائط بدقة لدعم أي إجراءات نظامية.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">الخطوة 3</p>
+        <p class="step-title-ar">إبلاغ المنصة عن الحادث</p>
+        <p class="step-body-ar">الإبلاغ فوراً عبر آلية الإبلاغ في المنصة (فيسبوك، إكس...) مع الاستشهاد ببنود شروط الخدمة المحددة المتعلقة بالخصوصية والمحتوى الضار. طلب الإزالة والاستعانة بـ Cyber Smile Foundation عند الحاجة.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">الخطوة 4</p>
+        <p class="step-title-ar">إبلاغ السلطات السعودية</p>
+        <p class="step-body-ar">الإبلاغ عبر بوابة 330330 أو تطبيق "كلنا أمن". الإبلاغ لوحدة الجرائم الإلكترونية في وزارة الداخلية عبر البوابة الإلكترونية أو زيارة مركز الشرطة. للاحتيال المالي: إبلاغ سامة والبنك لاتخاذ تدابير وقائية. هيئة الاتصالات ملزمة بتقديم الدعم التقني للجهات الأمنية أثناء التحقيقات.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">الخطوة 5</p>
+        <p class="step-title-ar">الاستشارة القانونية والطب الشرعي</p>
+        <p class="step-body-ar">تعيين محامٍ متخصص في الحقوق الرقمية وقوانين حماية البيانات بكل الأدلة. الاستعانة بخبراء الطب الشرعي الرقمي لتتبع مصدر التزييف العميق وتوثيق النتائج للسياقات القانونية.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">الخطوة 6</p>
+        <p class="step-title-ar">تعزيز الأمن الشخصي</p>
+        <p class="step-body-ar">تمكين المصادقة الثنائية على جميع الحسابات. تفعيل إعدادات الخصوصية. تقليل مشاركة الصور والمقاطع الشخصية عالية الدقة. الاشتراك في خدمات المراقبة للحماية من مزيد من إساءة استخدام البيانات.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="padding-bottom:0;border-bottom:none;">
+    <p class="lbl-ar">الوثائق المرتبطة في المكتبة</p>
+    <div class="rel-row" style="justify-content:flex-end;">
+      <span class="rel-tag">مبادئ أخلاقيات الذكاء الاصطناعي</span>
+      <span class="rel-tag">مبادئ الذكاء الاصطناعي التوليدي للعموم</span>
+      <span class="rel-tag">مبادئ الذكاء الاصطناعي التوليدي للجهات الحكومية</span>
+      <span class="rel-tag">إطار تبني الذكاء الاصطناعي</span>
+      <span class="rel-tag">المؤشر الوطني للذكاء الاصطناعي</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ PDF ══════════ -->
+<div id="p-pdf" class="panel" style="padding:0;">
+  <div class="pdf-bar">
+    <div class="pdf-info">
+      <div class="pdf-icon">PDF</div>
+      <div>
+        <p class="pdf-name">GuidelinesOnDeepfakeEthics.pdf — مبادئ التزييف العميق</p>
+        <p class="pdf-meta-txt">Arabic · 56 pages · SDAIA · 2025</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <a class="dl-btn" href="https://sdaia.gov.sa/ar/MediaCenter/KnowledgeCenter/ResearchLibrary/GuidelinesOnDeepfakeEthics.pdf" target="_blank" style="background:#1a3a6e;color:#fff;border-color:#1a3a6e;">⬇ Download PDF</a>
+      <a class="dl-btn" href="https://sdaia.gov.sa/ar/MediaCenter/KnowledgeCenter/ResearchLibrary/GuidelinesOnDeepfakeEthics.pdf" target="_blank">↗ Open in new tab</a>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;padding:60px 40px;background:#f5f5f2;text-align:center;">
+    <div style="width:64px;height:64px;background:#E6F1FB;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#1a3a6e;font-weight:700;">PDF</div>
+    <div>
+      <p style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:6px;">Full Source Document</p>
+      <p style="font-size:13px;color:#888;max-width:380px;line-height:1.65;">The complete official document is hosted on the SDAIA website. Click either button above to open or download it.</p>
+    </div>
+    <a href="https://sdaia.gov.sa/ar/MediaCenter/KnowledgeCenter/ResearchLibrary/GuidelinesOnDeepfakeEthics.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;font-size:13px;font-weight:500;padding:10px 22px;border-radius:9px;text-decoration:none;">
+      ↗ Open Full Document on SDAIA.gov.sa
+    </a>
+    <p style="font-size:11px;color:#bbb;margin-top:4px;">https://sdaia.gov.sa/ar/MediaCenter/KnowledgeCenter/ResearchLibrary/GuidelinesOnDeepfakeEthics.pdf</p>
+  </div>
+</div>
+
+</div>
+<script>
+function show(t){
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(el){el.classList.remove('active');});
+  var tabMap={'en':0,'ar':1,'pdf':2};
+  if(tabs[tabMap[t]])tabs[tabMap[t]].classList.add('active');
+  document.querySelectorAll('.panel').forEach(function(p){p.style.display='none';});
+  var panel=document.getElementById('p-'+t);
+  if(panel)panel.style.display='block';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.panel').forEach(function(p){p.style.display='none';});
+  var active=document.querySelector('.panel.active');
+  if(active)active.style.display='block';
+});
+</script>
+</body>
+</html>
