@@ -26,124 +26,71 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
 .tab.active{color:#1a5c2a;border-bottom-color:#1a5c2a;background:#fff;}
 .tab:hover:not(.active){color:#444;background:#f5f5f2;}
 
-.panel{display:none;padding:0;}
+.panel{display:none;}
 .panel.active{display:block;}
 
-/* Arabic brief inner styles */
+/* ── shared section styles ── */
+.body-wrap{padding:24px 28px;}
+.sec{padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);}
+.sec:last-child{border-bottom:none;padding-bottom:0;}
+.lbl{font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:7px;}
+.lbl-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:9.5px;font-weight:600;color:#aaa;margin-bottom:7px;direction:rtl;text-align:right;}
+.txt{font-size:13px;color:#444441;line-height:1.75;}
+.txt-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:13px;color:#444441;line-height:1.85;direction:rtl;text-align:right;}
 
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600&display=swap');
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:9px;}
+.pillar{padding:12px 14px;border-radius:10px;border:.5px solid;}
+.pillar-title{font-size:12px;font-weight:600;margin-bottom:5px;}
+.pillar-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;direction:rtl;margin-bottom:5px;}
+.pillar-body{font-size:11px;line-height:1.65;}
+.pillar-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;line-height:1.7;direction:rtl;}
+.p-teal{background:#E1F5EE;border-color:#9FE1CB;}.p-teal .pillar-title,.p-teal .pillar-title-ar{color:#085041;}.p-teal .pillar-body,.p-teal .pillar-body-ar{color:#0F6E56;}
+.p-purple{background:#EEEDFE;border-color:#CECBF6;}.p-purple .pillar-title,.p-purple .pillar-title-ar{color:#26215C;}.p-purple .pillar-body,.p-purple .pillar-body-ar{color:#534AB7;}
+.p-coral{background:#FAECE7;border-color:#F5C4B3;}.p-coral .pillar-title,.p-coral .pillar-title-ar{color:#712B13;}.p-coral .pillar-body,.p-coral .pillar-body-ar{color:#993C1D;}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Noto Sans Arabic', Arial, sans-serif;
-    background: #f5f5f3;
-    padding: 32px 20px;
-    color: #1a1a18;
-    direction: rtl;
-  }
+.timeline{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:9px;}
+.tl{padding:10px 12px;border-radius:9px;border:.5px solid rgba(0,0,0,.08);background:#fafaf8;}
+.tl-period{font-size:10px;font-weight:600;color:#888;margin-bottom:4px;}
+.tl-title{font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:4px;}
+.tl-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:4px;direction:rtl;}
+.tl-body{font-size:11px;color:#5F5E5A;line-height:1.55;}
+.tl-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;color:#5F5E5A;line-height:1.6;direction:rtl;}
 
-  .brief {
-    max-width: 860px;
-    margin: 0 auto;
-    background: #fff;
-    border: 0.5px solid rgba(0,0,0,0.12);
-    border-radius: 14px;
-    overflow: hidden;
-  }
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:9px;}
+.item{font-size:12px;color:#5F5E5A;line-height:1.7;}
+.item-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;color:#5F5E5A;line-height:1.75;direction:rtl;}
+.item-title{font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;}
+.item-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;direction:rtl;}
 
-  .brief-header {
-    background: #EEEDFE;
-    padding: 18px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
-  .brief-header-title { font-size: 16px; font-weight: 600; color: #26215C; line-height: 1.4; }
-  .brief-header-sub { font-size: 12px; color: #534AB7; margin-top: 4px; }
-  .dl-btn {
-    font-size: 12px; padding: 7px 14px; border-radius: 8px;
-    border: 0.5px solid #CECBF6; background: #fff; color: #3C3489;
-    cursor: pointer; white-space: nowrap; flex-shrink: 0;
-  }
+.chips{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:9px;}
+.chip{background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;}
+.chip-title{font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;}
+.chip-title-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;direction:rtl;}
+.chip-body{font-size:11px;color:#5F5E5A;line-height:1.6;}
+.chip-body-ar{font-family:"Noto Sans Arabic",Arial,sans-serif;font-size:11px;color:#5F5E5A;line-height:1.65;direction:rtl;}
 
-  .brief-body { padding: 0 24px 22px; }
+.enable-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;}
+.enable-item{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#5F5E5A;line-height:1.65;}
+.enable-item-ar{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#5F5E5A;line-height:1.7;direction:rtl;}
+.edot{width:6px;height:6px;border-radius:50%;background:#7F77DD;flex-shrink:0;margin-top:5px;}
+.enable-item strong,.enable-item-ar strong{color:#1a1a18;font-weight:600;}
 
-  .section { padding: 16px 0; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
-  .section:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .sec-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
-    color: #888780; margin-bottom: 8px; text-transform: uppercase;
-  }
-  .sec-text { font-size: 13px; color: #5F5E5A; line-height: 1.8; }
-
-  /* Pillars */
-  .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: 9px; }
-  .pillar { padding: 12px 14px; border-radius: 9px; border: 0.5px solid; }
-  .pillar-teal { background: #E1F5EE; border-color: #9FE1CB; }
-  .pillar-purple { background: #EEEDFE; border-color: #CECBF6; }
-  .pillar-coral { background: #FAECE7; border-color: #F5C4B3; }
-  .pillar-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
-  .pillar-teal .pillar-title { color: #085041; }
-  .pillar-purple .pillar-title { color: #26215C; }
-  .pillar-coral .pillar-title { color: #712B13; }
-  .pillar-body { font-size: 12px; line-height: 1.65; }
-  .pillar-teal .pillar-body { color: #0F6E56; }
-  .pillar-purple .pillar-body { color: #534AB7; }
-  .pillar-coral .pillar-body { color: #993C1D; }
-
-  /* Two column */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 9px; }
-  .item-block { font-size: 12px; color: #5F5E5A; line-height: 1.7; }
-  .item-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; display: flex; align-items: center; gap: 7px; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .dot-teal { background: #1D9E75; }
-  .dot-purple { background: #7F77DD; }
-  .dot-coral { background: #D85A30; }
-
-  /* Timeline */
-  .timeline { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: 9px; }
-  .tl-box { padding: 11px 13px; border-radius: 9px; border: 0.5px solid rgba(0,0,0,0.1); background: #f8f8f6; }
-  .tl-period { font-size: 10px; font-weight: 600; color: #888780; margin-bottom: 5px; }
-  .tl-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 5px; }
-  .tl-desc { font-size: 11px; color: #5F5E5A; line-height: 1.6; }
-
-  /* Enable grid */
-  .enable-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 9px; }
-  .enable-item { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: #5F5E5A; line-height: 1.65; }
-  .enable-item strong { color: #1a1a18; font-weight: 600; }
-  .enable-dot { width: 6px; height: 6px; border-radius: 50%; background: #7F77DD; flex-shrink: 0; margin-top: 5px; }
-
-  /* Output chips */
-  .chip-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 9px; }
-  .chip { background: #f8f8f6; border: 0.5px solid rgba(0,0,0,0.1); border-radius: 9px; padding: 10px 12px; }
-  .chip-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
-  .chip-body { font-size: 11px; color: #5F5E5A; line-height: 1.6; }
-
-  /* Related */
-  .rel-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
-  .rel-tag { font-size: 11px; padding: 4px 11px; border-radius: 20px; background: #E6F1FB; color: #0C447C; border: 0.5px solid #B5D4F4; }
-
-  @media print {
-    body { background: #fff; padding: 0; }
-    .brief { border: none; border-radius: 0; }
-  }
-
+.rel-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.rel-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;}
 
 /* PDF panel */
 .pdf-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#fafaf8;border-bottom:.5px solid rgba(0,0,0,.08);}
 .pdf-info{display:flex;align-items:center;gap:10px;}
 .pdf-icon{width:32px;height:32px;border-radius:7px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:12px;color:#085041;font-weight:700;}
 .pdf-name{font-size:13px;font-weight:500;color:#1a1a18;}
-.pdf-meta{font-size:11px;color:#888;}
+.pdf-meta-txt{font-size:11px;color:#888;}
 .dl-btn{font-size:11px;padding:6px 13px;border-radius:8px;border:.5px solid rgba(0,0,0,.15);background:#fff;color:#333;cursor:pointer;text-decoration:none;display:inline-block;}
-.pdf-frame{width:100%;height:700px;border:none;display:block;background:#f5f5f2;}
 </style>
 </head>
 <body>
 <div class="page">
 
+<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-left">
     <span class="badge">Framework · إطار</span>
@@ -158,132 +105,216 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
   </div>
 </div>
 
+<!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="show('ar')">🇸🇦 الموجز العربي</div>
   <div class="tab" onclick="show('en')">🇬🇧 English Brief</div>
   <div class="tab" onclick="show('pdf')">📄 Full Document</div>
 </div>
 
-<!-- ARABIC PANEL (existing content) -->
-<div id="p-ar" class="panel active" style="padding:0;">
-<div class="brief">
+<!-- ══════════ ARABIC ══════════ -->
+<div id="p-ar" class="panel active">
+<div class="body-wrap" style="direction:rtl;">
 
-  <div class="brief-header">
-    <div>
-      <p class="brief-header-title">إطار تبني الذكاء الاصطناعي — موجز مرجعي تفصيلي</p>
-      <p class="brief-header-sub">سدايا (SDAIA) · 2025 · استناداً إلى قرار مجلس الوزراء رقم 292 لعام 1441هـ · عربي · 48 صفحة</p>
-    </div>
-    <button class="dl-btn">⬇ تحميل</button>
+  <div class="sec">
+    <p class="lbl-ar">ما هذا الإطار؟</p>
+    <p class="txt-ar">دليل إرشادي شامل أصدرته سدايا لمساعدة جميع الجهات — الحكومية والخاصة — على تبني تقنيات الذكاء الاصطناعي بصورة منظمة ومسؤولة. استند إلى تحليل الوضع الراهن للجهات المحلية، ومقارنات معيارية دولية، ومقابلات مع خبراء، واستخلاص دروس من تجارب الذكاء الاصطناعي محلياً وعالمياً. يتضمن أمثلة تطبيقية مبسطة وأدوات قياس وآليات حوكمة قابلة للتنفيذ الفوري.</p>
   </div>
 
-  <div class="brief-body">
-
-    <!-- ما هو هذا الإطار -->
-    <div class="section">
-      <p class="sec-label">ما هذا الإطار؟</p>
-      <p class="sec-text">دليل إرشادي شامل أصدرته الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا) لمساعدة جميع الجهات — الحكومية والخاصة — على تبني تقنيات الذكاء الاصطناعي بصورة منظمة ومسؤولة. لم يُبنَ هذا الإطار من فراغ؛ بل استند إلى تحليل الوضع الراهن للجهات المحلية، ومقارنات معيارية دولية، ومقابلات مع خبراء ومتخصصين، واستخلاص دروس من تجارب الذكاء الاصطناعي في القطاعين المحلي والعالمي. ويمتاز بأنه لا يكتفي بالتوجيهات النظرية، بل يتضمن أمثلة تطبيقية مبسطة وأدوات قياس وآليات حوكمة قابلة للتنفيذ الفوري.</p>
-    </div>
-
-    <!-- الركائز الثلاث -->
-    <div class="section">
-      <p class="sec-label">الركائز الثلاث للإطار</p>
-      <div class="pillars">
-        <div class="pillar pillar-teal">
-          <p class="pillar-title">التوجهات</p>
-          <p class="pillar-body">الطبقة الاستراتيجية والمؤسسية: وضع الرؤية والأهداف، وتصميم مبادرات الذكاء الاصطناعي، وآليات الحوكمة، والمواءمة مع الأولويات الوطنية</p>
-        </div>
-        <div class="pillar pillar-purple">
-          <p class="pillar-title">الممكنات</p>
-          <p class="pillar-body">القدرات التأسيسية: جودة البيانات وإمكانية الوصول إليها، الكوادر البشرية المتخصصة، البنية التحتية التقنية، والجاهزية المؤسسية</p>
-        </div>
-        <div class="pillar pillar-coral">
-          <p class="pillar-title">المخرجات</p>
-          <p class="pillar-body">ما يُفضي إليه التبني الناجح: نماذج ذكاء اصطناعي منشورة، وآليات حوكمة وخصوصية، وتحسينات تشغيلية قابلة للقياس</p>
-        </div>
+  <div class="sec">
+    <p class="lbl-ar">الركائز الثلاث للإطار</p>
+    <div class="pillars">
+      <div class="pillar p-coral">
+        <p class="pillar-title-ar">المخرجات</p>
+        <p class="pillar-body-ar">ما يُفضي إليه التبني الناجح: نماذج ذكاء اصطناعي منشورة، وآليات حوكمة وخصوصية، وتحسينات تشغيلية قابلة للقياس</p>
       </div>
+      <div class="pillar p-purple">
+        <p class="pillar-title-ar">الممكنات</p>
+        <p class="pillar-body-ar">القدرات التأسيسية: جودة البيانات وإمكانية الوصول، الكوادر البشرية، البنية التحتية التقنية، والجاهزية المؤسسية</p>
+      </div>
+      <div class="pillar p-teal">
+        <p class="pillar-title-ar">التوجهات</p>
+        <p class="pillar-body-ar">الطبقة الاستراتيجية: وضع الرؤية والأهداف، وتصميم مبادرات الذكاء الاصطناعي، وآليات الحوكمة، والمواءمة مع الأولويات الوطنية</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">التوجهات — ماذا يتوقع الإطار من الجهات فعلياً؟</p>
+    <div class="two-col">
+      <div class="item-ar"><p class="item-title-ar">وثيقة استراتيجية للذكاء الاصطناعي</p>إعداد وثيقة تفصيلية طويلة المدى تحدد الرؤية والمجالات ذات الأولوية والنتائج المتوقعة، مرتبطة برؤية المملكة 2030 والاستراتيجية الوطنية للبيانات والذكاء الاصطناعي</div>
+      <div class="item-ar"><p class="item-title-ar">مؤشرات أداء قابلة للقياس (KPIs)</p>تحديد مؤشرات ملموسة كعدد مشاريع الذكاء الاصطناعي المنفذة ونسبة تحسن جودة الخدمة — مع مراجعات ربع سنوية من لجان متخصصة</div>
+      <div class="item-ar"><p class="item-title-ar">مبادرات موجهة لحالات استخدام فعلية</p>تصميم مبادرات تعالج تحديات تشغيلية حقيقية كالتنبؤ بالازدحام وأتمتة المهام اليدوية وكشف الاحتيال — لا مجرد تجارب بلا مسكن استراتيجي</div>
+      <div class="item-ar"><p class="item-title-ar">حوكمة مؤسسية شاملة</p>إنشاء نموذج تنظيمي داخلي يوضح الأدوار والمسؤوليات وآليات اتخاذ القرار، مع مراعاة مبادئ أخلاقيات الذكاء الاصطناعي ومتطلبات نظام PDPL</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">خارطة طريق التنفيذ — ثلاث مراحل زمنية</p>
+    <div class="timeline">
+      <div class="tl">
+        <p class="tl-period">المدى القصير · 1–2 سنوات</p>
+        <p class="tl-title-ar">الأتمتة والكفاءة</p>
+        <p class="tl-body-ar">أتمتة العمليات الروتينية، تفعيل التحليلات التنبؤية لدعم القرار، رفع الكفاءة التشغيلية وتقليل التكاليف</p>
+      </div>
+      <div class="tl">
+        <p class="tl-period">المدى المتوسط · 3–5 سنوات</p>
+        <p class="tl-title-ar">التوسع والابتكار</p>
+        <p class="tl-body-ar">توسيع نطاق تطبيقات الذكاء الاصطناعي، تطوير منتجات وخدمات ذكية، بناء فرق عمل متخصصة ومنشآت بحث وتطوير</p>
+      </div>
+      <div class="tl">
+        <p class="tl-period">المدى الطويل · أكثر من 5 سنوات</p>
+        <p class="tl-title-ar">التحول الجذري</p>
+        <p class="tl-body-ar">أنظمة ذكية بالتعلم الذاتي، الحوسبة السحابية الحكومية والذكاء الاصطناعي المتقدم، وشراكات استراتيجية عالمية</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">الممكنات — ماذا تحتاج الجهة أن تبني؟</p>
+    <div class="enable-grid">
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>توافر البيانات وإمكانية الوصول:</strong> نظام صلاحيات مبني على الأدوار الوظيفية (RBAC)، فهرس بيانات مركزي، تحديث تلقائي، وامتثال لنظام PDPL</span></div>
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>جودة البيانات وحوكمتها:</strong> مكتب بيانات مؤسسي مسؤول عن السياسات والتدقيق والتنظيف وإزالة التكرار</span></div>
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>الكوادر البشرية:</strong> بناء فريق ذكاء اصطناعي موافق للإطار الوطني المهني (NOSF) بتنوع في الأدوار وخطط نمو سنوية</span></div>
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>البنية التحتية التقنية:</strong> وحدات معالجة متخصصة (GPUs/TPUs)، بنية سحابية مرنة للتوسع التلقائي، وأدوات مراقبة أداء لحظية</span></div>
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>منصات تطوير النماذج:</strong> اعتماد إطار عمل MLOps لإدارة دورة حياة النموذج كاملاً من التطوير حتى الإنتاج</span></div>
+      <div class="enable-item-ar"><span class="edot"></span><span><strong>التطوير المهني المستمر:</strong> خطة تطوير وظيفي واضحة، وبرامج تدريب مكثفة، وتعاون مع الجامعات والمعاهد التقنية</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">المخرجات — كيف يبدو التبني الناجح؟</p>
+    <div class="chips">
+      <div class="chip"><p class="chip-title-ar">نماذج منشورة ومراقبة</p><p class="chip-body-ar">تتبع الدقة، ورصد انحراف النموذج، وإعادة تدريب دورية للحفاظ على الموثوقية</p></div>
+      <div class="chip"><p class="chip-title-ar">الخصوصية والأمن منذ البداية</p><p class="chip-body-ar">تشفير، إدارة صلاحيات، واختبار ثغرات قبل الإطلاق الرسمي من أول مرحلة</p></div>
+      <div class="chip"><p class="chip-title-ar">قياس الأثر الاقتصادي</p><p class="chip-body-ar">تقييم العائد على الاستثمار: كفاءة تشغيلية، تقليل التكاليف، تحسين جودة الخدمة</p></div>
+      <div class="chip"><p class="chip-title-ar">لوحات قياس تفاعلية</p><p class="chip-body-ar">عرض لحظي للبيانات يمكّن القيادة من اتخاذ قرارات سريعة ومبنية على البيانات الحية</p></div>
+      <div class="chip"><p class="chip-title-ar">مراجعات ربع سنوية</p><p class="chip-body-ar">لجان متخصصة تراجع كل مبادرة ذكاء اصطناعي كل ثلاثة أشهر وفق مؤشراتها المحددة</p></div>
+      <div class="chip"><p class="chip-title-ar">امتثال أخلاقي مستمر</p><p class="chip-body-ar">الشفافية وغياب التحيز وحماية الخصوصية تُراجع بشكل منتظم لا عند الإطلاق فقط</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl-ar">من يجب أن يطبق هذا الإطار؟</p>
+    <p class="txt-ar">أي وزارة أو جهة حكومية أو مؤسسة خاصة في المملكة تعتزم تبني الذكاء الاصطناعي أو توسيع استخدامه. صدور الإطار استناداً إلى قرار مجلس الوزراء رقم 292 يمنحه وزناً تنظيمياً لا مجرد طابع استشاري. يُتوقع من الجهات استخدامه لتقييم جاهزيتها وبناء استراتيجياتها وإثبات امتثالها للحوكمة.</p>
+  </div>
+
+  <div class="sec" style="padding-bottom:0;border-bottom:none;">
+    <p class="lbl-ar">الوثائق المرتبطة في المكتبة</p>
+    <div class="rel-row" style="justify-content:flex-end;">
+      <span class="rel-tag">المؤشر الوطني للذكاء الاصطناعي</span>
+      <span class="rel-tag">مبادئ أخلاقيات الذكاء الاصطناعي</span>
+      <span class="rel-tag">مبادئ الذكاء الاصطناعي التوليدي للجهات الحكومية</span>
+      <span class="rel-tag">الإطار الوطني للمعايير المهنية</span>
+    </div>
+  </div>
+
+</div>
 </div>
 
-<!-- ENGLISH PANEL -->
+<!-- ══════════ ENGLISH ══════════ -->
 <div id="p-en" class="panel">
-<div style="padding:24px 28px;direction:ltr;">
+<div class="body-wrap">
 
-  <div style="padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);">
-    <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:7px;">What this document is</p>
-    <p style="font-size:13px;color:#444441;line-height:1.75;">A comprehensive operational guide issued by SDAIA to help all Saudi organizations — government and private — adopt AI in a structured, responsible way. Built through current-state analysis, international benchmarking, expert interviews, and lessons from local and global deployments. It provides concrete guidance, practical examples, and measurement tools across the full AI adoption lifecycle. Issued under Cabinet Resolution No. 292 (1441H) designating SDAIA as the national reference authority on all AI and data matters.</p>
+  <div class="sec">
+    <p class="lbl">What this document is</p>
+    <p class="txt">A comprehensive operational guide issued by SDAIA to help all Saudi organizations — government and private — adopt AI in a structured, responsible way. Built through current-state analysis, international benchmarking, expert interviews, and lessons from local and global deployments. It provides concrete guidance, practical examples, and measurement tools across the full AI adoption lifecycle. Issued under Cabinet Resolution No. 292 (1441H) designating SDAIA as the national reference authority on all AI and data matters.</p>
   </div>
 
-  <div style="padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);">
-    <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:9px;">The three pillars</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;">
-      <div style="padding:12px 14px;border-radius:10px;background:#E1F5EE;border:.5px solid #9FE1CB;">
-        <p style="font-size:12px;font-weight:600;color:#085041;margin-bottom:5px;">التوجهات — Orientations</p>
-        <p style="font-size:11px;color:#0F6E56;line-height:1.65;">The strategic layer: AI vision, goals, governance frameworks, design principles, alignment with national priorities and Vision 2030</p>
+  <div class="sec">
+    <p class="lbl">The three pillars</p>
+    <div class="pillars">
+      <div class="pillar p-teal">
+        <p class="pillar-title">التوجهات — Orientations</p>
+        <p class="pillar-body">The strategic layer: AI vision, goals, governance frameworks, design principles, and alignment with national priorities and Vision 2030</p>
       </div>
-      <div style="padding:12px 14px;border-radius:10px;background:#EEEDFE;border:.5px solid #CECBF6;">
-        <p style="font-size:12px;font-weight:600;color:#26215C;margin-bottom:5px;">الممكنات — Enablers</p>
-        <p style="font-size:11px;color:#534AB7;line-height:1.65;">Foundational capabilities: data quality &amp; access, human capital, technical infrastructure (GPUs/TPUs, MLOps), institutional readiness</p>
+      <div class="pillar p-purple">
+        <p class="pillar-title">الممكنات — Enablers</p>
+        <p class="pillar-body">Foundational capabilities: data quality &amp; access, human capital, technical infrastructure (GPUs/TPUs, MLOps), institutional readiness</p>
       </div>
-      <div style="padding:12px 14px;border-radius:10px;background:#FAECE7;border:.5px solid #F5C4B3;">
-        <p style="font-size:12px;font-weight:600;color:#712B13;margin-bottom:5px;">المخرجات — Outputs</p>
-        <p style="font-size:11px;color:#993C1D;line-height:1.65;">What successful adoption produces: deployed AI models, governance controls, privacy &amp; safety measures, economic impact tracking</p>
+      <div class="pillar p-coral">
+        <p class="pillar-title">المخرجات — Outputs</p>
+        <p class="pillar-body">What successful adoption produces: deployed AI models, governance controls, privacy &amp; safety measures, economic impact tracking</p>
       </div>
     </div>
   </div>
 
-  <div style="padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);">
-    <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:9px;">Implementation roadmap — 3 time phases</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;">
-      <div style="padding:10px 12px;border-radius:9px;border:.5px solid rgba(0,0,0,.08);background:#fafaf8;">
-        <p style="font-size:10px;font-weight:600;color:#888;margin-bottom:4px;">SHORT-TERM · 1–2 years</p>
-        <p style="font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Automation & Efficiency</p>
-        <p style="font-size:11px;color:#5F5E5A;line-height:1.55;">Automate routine operations, activate predictive analytics for decision support, reduce costs and improve performance quality</p>
+  <div class="sec">
+    <p class="lbl">What Orientations requires in practice</p>
+    <div class="two-col">
+      <div class="item"><p class="item-title">AI strategy document</p>A formal long-term vision document defining priority areas, expected outcomes, and timelines — linked to Vision 2030 and the National Data &amp; AI Strategy (NSDAI)</div>
+      <div class="item"><p class="item-title">KPIs &amp; quarterly reviews</p>Measurable indicators (e.g. number of deployed AI projects, service quality improvement %) reviewed every quarter by a dedicated specialist committee</div>
+      <div class="item"><p class="item-title">Real use-case initiatives</p>AI initiatives that address actual operational challenges — traffic prediction, task automation, fraud detection — not experiments without a strategic home</div>
+      <div class="item"><p class="item-title">Institutional governance</p>An internal governance model clarifying roles, responsibilities, and decision-making mechanisms — aligned with AI ethics principles and PDPL</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="lbl">Implementation roadmap — 3 time phases</p>
+    <div class="timeline">
+      <div class="tl">
+        <p class="tl-period">SHORT-TERM · 1–2 years</p>
+        <p class="tl-title">Automation &amp; Efficiency</p>
+        <p class="tl-body">Automate routine operations, activate predictive analytics for decision support, reduce costs and improve performance quality</p>
       </div>
-      <div style="padding:10px 12px;border-radius:9px;border:.5px solid rgba(0,0,0,.08);background:#fafaf8;">
-        <p style="font-size:10px;font-weight:600;color:#888;margin-bottom:4px;">MEDIUM-TERM · 3–5 years</p>
-        <p style="font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Scale & Innovation</p>
-        <p style="font-size:11px;color:#5F5E5A;line-height:1.55;">Expand AI applications, develop intelligent products and services, build specialist teams and R&amp;D capabilities</p>
+      <div class="tl">
+        <p class="tl-period">MEDIUM-TERM · 3–5 years</p>
+        <p class="tl-title">Scale &amp; Innovation</p>
+        <p class="tl-body">Expand AI applications, develop intelligent products and services, build specialist teams and R&amp;D capabilities</p>
       </div>
-      <div style="padding:10px 12px;border-radius:9px;border:.5px solid rgba(0,0,0,.08);background:#fafaf8;">
-        <p style="font-size:10px;font-weight:600;color:#888;margin-bottom:4px;">LONG-TERM · 5+ years</p>
-        <p style="font-size:12px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Radical Transformation</p>
-        <p style="font-size:11px;color:#5F5E5A;line-height:1.55;">Self-learning systems, government cloud AI, advanced AI, strategic global partnerships</p>
+      <div class="tl">
+        <p class="tl-period">LONG-TERM · 5+ years</p>
+        <p class="tl-title">Radical Transformation</p>
+        <p class="tl-body">Self-learning systems, government cloud AI, advanced AI, and strategic global partnerships</p>
       </div>
     </div>
   </div>
 
-  <div style="padding:14px 0;border-bottom:.5px solid rgba(0,0,0,.07);">
-    <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:9px;">What outputs look like when done right</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Deployed &amp; monitored models</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">AI in production with tracked accuracy, drift monitoring, and regular retraining</p></div>
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Privacy &amp; security by design</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">Encryption, access management, and vulnerability testing from day one</p></div>
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Economic impact measured</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">ROI tracked: efficiency gains, cost reductions, service quality improvements</p></div>
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Real-time dashboards</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">Live data enabling leadership to make fast, evidence-based decisions</p></div>
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Quarterly reviews</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">Specialist committees assess every AI initiative against KPIs every quarter</p></div>
-      <div style="background:#fafaf8;border:.5px solid rgba(0,0,0,.08);border-radius:9px;padding:10px 12px;"><p style="font-size:11px;font-weight:600;color:#1a1a18;margin-bottom:3px;">Continuous ethics compliance</p><p style="font-size:11px;color:#5F5E5A;line-height:1.6;">Transparency, fairness, and privacy reviewed regularly — not just at launch</p></div>
+  <div class="sec">
+    <p class="lbl">Enablers — what the entity needs to build</p>
+    <div class="enable-grid">
+      <div class="enable-item"><span class="edot"></span><span><strong>Data availability &amp; access:</strong> Role-based access control (RBAC), central data catalogue, automatic refresh, PDPL compliance</span></div>
+      <div class="enable-item"><span class="edot"></span><span><strong>Data quality &amp; governance:</strong> A Data Office responsible for policy, auditing, deduplication, and accountability</span></div>
+      <div class="enable-item"><span class="edot"></span><span><strong>Human capital:</strong> AI team aligned with NOSF national professional standards, diverse roles, annual growth plans</span></div>
+      <div class="enable-item"><span class="edot"></span><span><strong>Technical infrastructure:</strong> GPUs/TPUs, auto-scaling cloud architecture, real-time performance monitoring, disaster recovery</span></div>
+      <div class="enable-item"><span class="edot"></span><span><strong>Model development platforms:</strong> MLOps framework managing the full model lifecycle from development to production</span></div>
+      <div class="enable-item"><span class="edot"></span><span><strong>Continuous professional development:</strong> Clear career plans, intensive training programs, university and technical institute partnerships</span></div>
     </div>
   </div>
 
-  <div style="padding:14px 0;border-bottom:none;">
-    <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:8px;">Related documents in this library</p>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;">
-      <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;">NAII National AI Index</span>
-      <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;">AI Ethics Principles</span>
-      <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;">GenAI Government Guidelines</span>
-      <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;border:.5px solid #B5D4F4;">National Professional Standards</span>
+  <div class="sec">
+    <p class="lbl">Outputs — what successful adoption looks like</p>
+    <div class="chips">
+      <div class="chip"><p class="chip-title">Deployed &amp; monitored models</p><p class="chip-body">Accuracy tracking, drift monitoring, regular retraining to maintain reliability</p></div>
+      <div class="chip"><p class="chip-title">Privacy &amp; security by design</p><p class="chip-body">Encryption, access management, and vulnerability testing built in from day one</p></div>
+      <div class="chip"><p class="chip-title">Economic impact measured</p><p class="chip-body">ROI tracked: operational efficiency, cost reductions, service quality improvements</p></div>
+      <div class="chip"><p class="chip-title">Real-time dashboards</p><p class="chip-body">Live data enabling leadership to make fast, evidence-based decisions</p></div>
+      <div class="chip"><p class="chip-title">Quarterly reviews</p><p class="chip-body">Specialist committees assess every AI initiative against KPIs every quarter</p></div>
+      <div class="chip"><p class="chip-title">Continuous ethics compliance</p><p class="chip-body">Transparency, fairness, and privacy reviewed regularly — not just at launch</p></div>
+    </div>
+  </div>
+
+  <div class="sec" style="padding-bottom:0;border-bottom:none;">
+    <p class="lbl">Related documents in this library</p>
+    <div class="rel-row">
+      <span class="rel-tag">NAII National AI Index</span>
+      <span class="rel-tag">AI Ethics Principles</span>
+      <span class="rel-tag">GenAI Government Guidelines</span>
+      <span class="rel-tag">National Professional Standards</span>
     </div>
   </div>
 
 </div>
 </div>
 
-<!-- PDF PANEL -->
+<!-- ══════════ PDF ══════════ -->
 <div id="p-pdf" class="panel" style="padding:0;">
   <div class="pdf-bar">
     <div class="pdf-info">
       <div class="pdf-icon">PDF</div>
       <div>
-        <p class="pdf-name" id="pdf-name-label">AIAdoptionFramework.pdf — إطار تبني الذكاء الاصطناعي</p>
-        <p class="pdf-meta">Arabic · 48 pages · SDAIA · 2025</p>
+        <p class="pdf-name">AIAdoptionFramework.pdf — إطار تبني الذكاء الاصطناعي</p>
+        <p class="pdf-meta-txt">Arabic · 48 pages · SDAIA · 2025</p>
       </div>
     </div>
     <div style="display:flex;gap:8px;">
@@ -291,8 +322,8 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
       <a class="dl-btn" href="https://sdaia.gov.sa/ar/SDAIA/about/Files/AIAdoptionFramework.pdf" target="_blank">↗ Open in new tab</a>
     </div>
   </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;padding:60px 40px;background:#f5f5f2;text-align:center;">
-    <div style="width:64px;height:64px;background:#FAECE7;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#993C1D;font-weight:700;">PDF</div>
+  <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;padding:60px 40px;background:#f5f5f2;text-align:center;">
+    <div style="width:64px;height:64px;background:#E1F5EE;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#085041;font-weight:700;">PDF</div>
     <div>
       <p style="font-size:15px;font-weight:600;color:#1a1a18;margin-bottom:6px;">Full Source Document</p>
       <p style="font-size:13px;color:#888;max-width:380px;line-height:1.65;">The complete official document is hosted on the SDAIA website. Click either button above to open or download it.</p>
@@ -302,6 +333,8 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
     </a>
     <p style="font-size:11px;color:#bbb;margin-top:4px;">https://sdaia.gov.sa/ar/SDAIA/about/Files/AIAdoptionFramework.pdf</p>
   </div>
+</div>
+
 </div>
 <script>
 function show(t){
