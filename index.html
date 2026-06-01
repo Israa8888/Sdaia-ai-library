@@ -260,6 +260,14 @@ body { font-family:'Inter',Arial,sans-serif; background:var(--bg); color:#1a1a18
           </div>
           <span class="si-badge" style="background:#E6F1FB;color:#1b5ea6;">عام</span>
         </div>
+        <div class="sidebar-item" id="si-8" onclick="openDoc(8)">
+          <div class="si-dot" style="background:#1a3a6e;"></div>
+          <div class="si-text">
+            <div class="si-en">Deepfake Principles</div>
+            <div class="si-ar">مبادئ التزييف العميق</div>
+          </div>
+          <span class="si-badge" style="background:#E6F1FB;color:#1a3a6e;">تقنية</span>
+        </div>
       </div>
 
       <div class="sidebar-group">
@@ -296,7 +304,7 @@ body { font-family:'Inter',Arial,sans-serif; background:var(--bg); color:#1a1a18
         <p class="home-title-ar">مكتبة وثائق الذكاء الاصطناعي السعودية</p>
         <p class="home-desc">SDAIA's complete collection of foundational AI frameworks, standards, principles and guidelines — each with an English brief, an Arabic brief, and the full source document embedded.</p>
         <div class="home-stats">
-          <div class="hstat"><div class="hstat-n">7</div><div class="hstat-l">Documents</div></div>
+          <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">Documents</div></div>
           <div class="hstat"><div class="hstat-n">EN + AR</div><div class="hstat-l">Both languages</div></div>
           <div class="hstat"><div class="hstat-n">PDF</div><div class="hstat-l">Full docs inside</div></div>
           <div class="hstat"><div class="hstat-n">2025</div><div class="hstat-l">Edition</div></div>
@@ -436,6 +444,7 @@ body { font-family:'Inter',Arial,sans-serif; background:var(--bg); color:#1a1a18
             <span class="rel-chip rc3" onclick="openDoc(3)">AI Ethics Principles</span>
             <span class="rel-chip rc6" onclick="openDoc(6)">GenAI Government Guidelines</span>
             <span class="rel-chip rc7" onclick="openDoc(7)">GenAI Public Principles</span>
+            <span class="rel-chip rc4" onclick="openDoc(8)">Deepfake Principles</span>
           </div>
         </div>
         <div class="rel-layer">
@@ -480,6 +489,7 @@ const docs = {
   5: { file:'File0003_AcademicAI_reference_brief.html', en:'Saudi Academic AI Framework',    ar:'الإطار الأكاديمي لمؤهلات الذكاء الاصطناعي',         meta:'SDAIA · 2025 · Academic · 38 pages' },
   6: { file:'GenAIGovGuidelines_reference_brief.html', en:'GenAI Principles — Government',  ar:'مبادئ الذكاء الاصطناعي التوليدي للجهات الحكومية',   meta:'SDAIA · 2025 · Guidelines · 30 pages' },
   7: { file:'GenerativeAIPublic_reference_brief.html', en:'GenAI Principles — Public',      ar:'مبادئ الذكاء الاصطناعي التوليدي للعموم',             meta:'SDAIA · 2025 · Public · 22 pages' },
+  8: { file:'deepfake_principles_brief.html',              en:'Deepfake Principles',               ar:'مبادئ التزييف العميق',                               meta:'SDAIA · 2025 · Guidelines · 56 pages' },
 };
 
 let current = null;
