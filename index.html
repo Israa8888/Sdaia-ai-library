@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDAIA AI Document Library | مكتبة وثائق الذكاء الاصطناعي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  --bg:#f0efe9; --surface:#fff; --surface2:#fafaf8;
+  --border:rgba(0,0,0,.08); --border2:rgba(0,0,0,.14);
+  --t1:#1D9E75; --t2:#26215C; --t3:#0f5c32;
+  --t4:#185FA5; --t5:#2d5a1b; --t6:#3d2b8a; --t7:#1b5ea6;
+}
+
+body { font-family:'Inter',Arial,sans-serif; background:var(--bg); color:#1a1a18; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+/* ── TOP NAV ── */
+.topnav {
+  background:linear-gradient(135deg,#0d1b35 0%,#1a3a6e 60%,#1d5a8a 100%);
+  padding:0 20px;
+  display:flex; align-items:center; gap:16px;
+  height:54px; flex-shrink:0;
+  border-bottom:.5px solid rgba(255,255,255,.1);
+}
+.nav-logo {
+  display:flex; align-items:center; gap:8px;
+  padding:4px 10px; border-radius:7px;
+  background:rgba(255,255,255,.1); border:.5px solid rgba(255,255,255,.15);
+  cursor:pointer; text-decoration:none;
+}
+.nav-logo-en { font-size:12px; font-weight:600; color:#fff; letter-spacing:.04em; }
+.nav-logo-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:11px; color:rgba(255,255,255,.6); }
+.nav-div { width:1px; height:28px; background:rgba(255,255,255,.15); }
+.nav-title { font-size:13px; font-weight:500; color:rgba(255,255,255,.85); }
+.nav-title-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:12px; color:rgba(255,255,255,.5); }
+.nav-spacer { flex:1; }
+.nav-breadcrumb { font-size:11px; color:rgba(255,255,255,.45); display:flex; align-items:center; gap:6px; }
+.nav-breadcrumb span { color:rgba(255,255,255,.7); }
+.back-btn {
+  font-size:11px; font-weight:500; color:#fff;
+  background:rgba(255,255,255,.12); border:.5px solid rgba(255,255,255,.2);
+  border-radius:7px; padding:5px 12px; cursor:pointer;
+  display:none; align-items:center; gap:5px;
+  transition:background .15s;
+}
+.back-btn:hover { background:rgba(255,255,255,.2); }
+.back-btn.visible { display:flex; }
+
+/* ── LAYOUT ── */
+.app-body { display:flex; flex:1; overflow:hidden; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width:260px; flex-shrink:0;
+  background:var(--surface);
+  border-right:.5px solid var(--border);
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.sidebar-header {
+  padding:14px 16px 10px;
+  border-bottom:.5px solid var(--border);
+  flex-shrink:0;
+}
+.sidebar-section-label {
+  font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:#aaa; margin-bottom:8px; padding:0 4px;
+}
+.sidebar-list { flex:1; overflow-y:auto; padding:8px; }
+.sidebar-group { margin-bottom:6px; }
+.sidebar-group-title {
+  font-size:9px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+  color:#bbb; padding:6px 8px 4px;
+}
+.sidebar-item {
+  display:flex; align-items:center; gap:9px;
+  padding:9px 10px; border-radius:9px;
+  cursor:pointer; transition:background .15s;
+  margin-bottom:2px; border:.5px solid transparent;
+}
+.sidebar-item:hover { background:var(--bg); }
+.sidebar-item.active { background:var(--bg); border-color:var(--border); }
+.si-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.si-text { flex:1; min-width:0; }
+.si-en { font-size:12px; font-weight:500; color:#1a1a18; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.si-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:10px; color:#888; direction:rtl; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.si-badge { font-size:9px; font-weight:600; padding:1px 6px; border-radius:20px; flex-shrink:0; }
+
+/* ── MAIN PANEL ── */
+.main-panel { flex:1; overflow:hidden; display:flex; flex-direction:column; }
+
+/* HOME screen */
+#home-screen {
+  flex:1; overflow-y:auto; padding:28px 28px 40px;
+  display:flex; flex-direction:column;
+}
+.home-welcome {
+  text-align:center; padding:24px 0 32px;
+  border-bottom:.5px solid var(--border); margin-bottom:28px;
+}
+.home-title-en { font-size:22px; font-weight:600; color:#1a1a18; margin-bottom:4px; }
+.home-title-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:16px; color:#888; }
+.home-desc { font-size:13px; color:#5F5E5A; max-width:500px; margin:12px auto 0; line-height:1.65; }
+.home-stats { display:flex; justify-content:center; gap:28px; margin-top:20px; }
+.hstat { text-align:center; }
+.hstat-n { font-size:20px; font-weight:600; color:#1a1a18; }
+.hstat-l { font-size:10px; color:#aaa; margin-top:1px; }
+
+.section-hdr {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px; margin-top:4px;
+}
+.section-hdr-label { font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:#aaa; }
+.section-hdr-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:10px; color:#ccc; }
+.section-hdr-line { flex:1; height:.5px; background:var(--border); }
+
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; margin-bottom:28px; }
+
+.doc-card {
+  background:var(--surface); border:.5px solid var(--border);
+  border-radius:12px; overflow:hidden; cursor:pointer;
+  transition:box-shadow .2s, transform .2s; display:flex; flex-direction:column;
+}
+.doc-card:hover { box-shadow:0 4px 20px rgba(0,0,0,.1); transform:translateY(-2px); }
+.dc-bar { height:4px; }
+.dc-body { padding:14px 16px; flex:1; }
+.dc-badge { font-size:9px; font-weight:600; padding:2px 8px; border-radius:20px; display:inline-block; margin-bottom:8px; }
+.dc-title-en { font-size:13px; font-weight:600; color:#1a1a18; line-height:1.3; margin-bottom:3px; }
+.dc-title-ar { font-family:'Noto Sans Arabic',Arial,sans-serif; font-size:11px; color:#888; direction:rtl; margin-bottom:8px; }
+.dc-desc { font-size:11px; color:#5F5E5A; line-height:1.6; }
+.dc-footer {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:9px 16px; border-top:.5px solid var(--border); background:var(--surface2);
+}
+.dc-meta { font-size:10px; color:#aaa; }
+.dc-btn {
+  font-size:10px; font-weight:500; padding:4px 10px; border-radius:6px;
+  border:.5px solid var(--border2); background:var(--surface); color:#1a1a18;
+  cursor:pointer; transition:background .15s;
+}
+.doc-card:hover .dc-btn { background:var(--bg); }
+
+/* Relationship map */
+.rel-map { background:var(--surface); border:.5px solid var(--border); border-radius:12px; padding:18px 20px; }
+.rel-map-title { font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:#aaa; margin-bottom:14px; }
+.rel-layer { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+.rel-layer:last-child { margin-bottom:0; }
+.rl-label { font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#bbb; min-width:72px; padding-top:5px; }
+.rl-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.rel-chip {
+  font-size:10px; font-weight:500; padding:4px 10px; border-radius:6px;
+  border:.5px solid; cursor:pointer; transition:opacity .15s;
+}
+.rel-chip:hover { opacity:.7; }
+.rc1{background:#E1F5EE;color:#085041;border-color:#9FE1CB;}
+.rc2{background:#EEEDFE;color:#26215C;border-color:#CECBF6;}
+.rc3{background:#EAF3DE;color:#173404;border-color:#C0DD97;}
+.rc4{background:#E6F1FB;color:#0C447C;border-color:#B5D4F4;}
+.rc5{background:#EAF3DE;color:#2d5a1b;border-color:#9FE1CB;}
+.rc6{background:#EEEDFE;color:#3d2b8a;border-color:#CECBF6;}
+.rc7{background:#E6F1FB;color:#1b5ea6;border-color:#B5D4F4;}
+
+/* IFRAME SCREEN */
+#iframe-screen { flex:1; display:none; flex-direction:column; overflow:hidden; }
+#iframe-screen.visible { display:flex; }
+#home-screen.hidden { display:none; }
+
+.iframe-toolbar {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 16px; border-bottom:.5px solid var(--border);
+  background:var(--surface2); flex-shrink:0;
+}
+.iframe-doc-title { font-size:12px; font-weight:600; color:#1a1a18; }
+.iframe-doc-meta { font-size:11px; color:#aaa; }
+.iframe-spacer { flex:1; }
+.iframe-hint { font-size:10px; color:#bbb; font-style:italic; }
+
+.doc-iframe {
+  flex:1; width:100%; border:none; display:block;
+  background:#f5f5f2;
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+  <div class="nav-logo" onclick="showHome()">
+    <span class="nav-logo-en">SDAIA</span>
+    <span class="nav-logo-ar">سدايا</span>
+  </div>
+  <div class="nav-div"></div>
+  <span class="nav-title">AI Document Library</span>
+  <span class="nav-title-ar">· مكتبة الوثائق</span>
+  <div class="nav-spacer"></div>
+  <div class="nav-breadcrumb" id="breadcrumb" style="display:none;">
+    <span onclick="showHome()" style="cursor:pointer;color:rgba(255,255,255,.5);">Library</span>
+    <span style="color:rgba(255,255,255,.3);">›</span>
+    <span id="breadcrumb-doc"></span>
+  </div>
+  <button class="back-btn" id="back-btn" onclick="showHome()">← Back to Library</button>
+</div>
+
+<!-- APP BODY -->
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-section-label">7 Documents · 2 Languages</div>
+    </div>
+    <div class="sidebar-list">
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Strategy & Adoption</div>
+        <div class="sidebar-item" id="si-1" onclick="openDoc(1)">
+          <div class="si-dot" style="background:#1D9E75;"></div>
+          <div class="si-text">
+            <div class="si-en">AI Adoption Framework</div>
+            <div class="si-ar">إطار تبني الذكاء الاصطناعي</div>
+          </div>
+          <span class="si-badge" style="background:#E1F5EE;color:#085041;">إطار</span>
+        </div>
+        <div class="sidebar-item" id="si-2" onclick="openDoc(2)">
+          <div class="si-dot" style="background:#26215C;"></div>
+          <div class="si-text">
+            <div class="si-en">National AI Index (NAII)</div>
+            <div class="si-ar">المؤشر الوطني للذكاء الاصطناعي</div>
+          </div>
+          <span class="si-badge" style="background:#EEEDFE;color:#26215C;">مؤشر</span>
+        </div>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Ethics & Governance</div>
+        <div class="sidebar-item" id="si-3" onclick="openDoc(3)">
+          <div class="si-dot" style="background:#0f5c32;"></div>
+          <div class="si-text">
+            <div class="si-en">AI Ethics Principles</div>
+            <div class="si-ar">مبادئ أخلاقيات الذكاء الاصطناعي</div>
+          </div>
+          <span class="si-badge" style="background:#EAF3DE;color:#173404;">تنظيم</span>
+        </div>
+        <div class="sidebar-item" id="si-6" onclick="openDoc(6)">
+          <div class="si-dot" style="background:#3d2b8a;"></div>
+          <div class="si-text">
+            <div class="si-en">GenAI — Government</div>
+            <div class="si-ar">الذكاء التوليدي للجهات الحكومية</div>
+          </div>
+          <span class="si-badge" style="background:#EEEDFE;color:#3d2b8a;">توجيه</span>
+        </div>
+        <div class="sidebar-item" id="si-7" onclick="openDoc(7)">
+          <div class="si-dot" style="background:#1b5ea6;"></div>
+          <div class="si-text">
+            <div class="si-en">GenAI — Public</div>
+            <div class="si-ar">الذكاء التوليدي للعموم</div>
+          </div>
+          <span class="si-badge" style="background:#E6F1FB;color:#1b5ea6;">عام</span>
+        </div>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Human Capital & Education</div>
+        <div class="sidebar-item" id="si-4" onclick="openDoc(4)">
+          <div class="si-dot" style="background:#185FA5;"></div>
+          <div class="si-text">
+            <div class="si-en">Professional Standards (NOSF)</div>
+            <div class="si-ar">الإطار الوطني للمعايير المهنية</div>
+          </div>
+          <span class="si-badge" style="background:#E6F1FB;color:#0C447C;">معايير</span>
+        </div>
+        <div class="sidebar-item" id="si-5" onclick="openDoc(5)">
+          <div class="si-dot" style="background:#2d5a1b;"></div>
+          <div class="si-text">
+            <div class="si-en">Academic AI Framework</div>
+            <div class="si-ar">الإطار الأكاديمي لمؤهلات الذكاء الاصطناعي</div>
+          </div>
+          <span class="si-badge" style="background:#EAF3DE;color:#2d5a1b;">أكاديمي</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN PANEL -->
+  <div class="main-panel">
+
+    <!-- HOME SCREEN -->
+    <div id="home-screen">
+
+      <div class="home-welcome">
+        <p class="home-title-en">Saudi AI Document Library</p>
+        <p class="home-title-ar">مكتبة وثائق الذكاء الاصطناعي السعودية</p>
+        <p class="home-desc">SDAIA's complete collection of foundational AI frameworks, standards, principles and guidelines — each with an English brief, an Arabic brief, and the full source document embedded.</p>
+        <div class="home-stats">
+          <div class="hstat"><div class="hstat-n">7</div><div class="hstat-l">Documents</div></div>
+          <div class="hstat"><div class="hstat-n">EN + AR</div><div class="hstat-l">Both languages</div></div>
+          <div class="hstat"><div class="hstat-n">PDF</div><div class="hstat-l">Full docs inside</div></div>
+          <div class="hstat"><div class="hstat-n">2025</div><div class="hstat-l">Edition</div></div>
+        </div>
+      </div>
+
+      <!-- Strategy -->
+      <div class="section-hdr">
+        <span class="section-hdr-label">Strategy & Adoption</span>
+        <span class="section-hdr-ar">الاستراتيجية والتبني</span>
+        <div class="section-hdr-line"></div>
+      </div>
+      <div class="card-grid">
+        <div class="doc-card" onclick="openDoc(1)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#1D9E75,#4caf7d);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#E1F5EE;color:#085041;">Framework · إطار</span>
+            <p class="dc-title-en">AI Adoption Framework</p>
+            <p class="dc-title-ar">إطار تبني الذكاء الاصطناعي</p>
+            <p class="dc-desc">National guide for strategic AI adoption — 3 pillars (Orientations, Enablers, Outputs), concrete roadmap aligned with Vision 2030.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · 2025 · 48 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+        <div class="doc-card" onclick="openDoc(2)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#26215C,#7F77DD);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#EEEDFE;color:#26215C;">Index · مؤشر</span>
+            <p class="dc-title-en">National AI Index (NAII)</p>
+            <p class="dc-title-ar">المؤشر الوطني للذكاء الاصطناعي</p>
+            <p class="dc-desc">Diagnostic tool measuring AI readiness — 3 pillars, 7 axes, 23 domains, 6 maturity levels from Level 0 to Level 5 leadership.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · May 2025 · 21 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ethics -->
+      <div class="section-hdr">
+        <span class="section-hdr-label">Ethics & Governance</span>
+        <span class="section-hdr-ar">الأخلاقيات والحوكمة</span>
+        <div class="section-hdr-line"></div>
+      </div>
+      <div class="card-grid">
+        <div class="doc-card" onclick="openDoc(3)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#0f5c32,#4caf7d);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#EAF3DE;color:#173404;">Regulatory · تنظيمية</span>
+            <p class="dc-title-en">AI Ethics Principles</p>
+            <p class="dc-title-ar">مبادئ أخلاقيات الذكاء الاصطناعي</p>
+            <p class="dc-desc">Binding framework for all AI design and deployment — 5 principles, 4 risk levels (including prohibited systems), 3 mandatory role types.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · May 2025 · 50 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+        <div class="doc-card" onclick="openDoc(6)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#3d2b8a,#7c5cbf);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#EEEDFE;color:#3d2b8a;">Guidelines · توجيهية</span>
+            <p class="dc-title-en">GenAI — Government Entities</p>
+            <p class="dc-title-ar">الذكاء التوليدي للجهات الحكومية</p>
+            <p class="dc-desc">Binding rules for government GenAI use — hard data classification rule, 7 principles, 5 use cases, Annex 2 pre-use checklist.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · 2025 · 30 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+        <div class="doc-card" onclick="openDoc(7)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#1b5ea6,#3b82d4);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#E6F1FB;color:#1b5ea6;">Public · عام</span>
+            <p class="dc-title-en">GenAI — Public</p>
+            <p class="dc-title-ar">الذكاء التوليدي للعموم</p>
+            <p class="dc-desc">For all individuals, companies, and developers — 5 GenAI benefits, 7 ethics principles, 7 risks with specific mitigations.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · 2025 · 22 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Human Capital -->
+      <div class="section-hdr">
+        <span class="section-hdr-label">Human Capital & Education</span>
+        <span class="section-hdr-ar">رأس المال البشري والتعليم</span>
+        <div class="section-hdr-line"></div>
+      </div>
+      <div class="card-grid">
+        <div class="doc-card" onclick="openDoc(4)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#185FA5,#378ADD);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#E6F1FB;color:#0C447C;">Standards · معايير</span>
+            <p class="dc-title-en">National Professional Standards (NOSF)</p>
+            <p class="dc-title-ar">الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي</p>
+            <p class="dc-desc">16 data and AI job roles across 5 categories — tasks, skills, knowledge, education and career progression for each.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · 2025 · 86 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+        <div class="doc-card" onclick="openDoc(5)">
+          <div class="dc-bar" style="background:linear-gradient(90deg,#2d5a1b,#6abf4b);"></div>
+          <div class="dc-body">
+            <span class="dc-badge" style="background:#EAF3DE;color:#2d5a1b;">Academic · أكاديمي</span>
+            <p class="dc-title-en">Saudi Academic AI Framework</p>
+            <p class="dc-title-ar">الإطار الأكاديمي السعودي لمؤهلات الذكاء الاصطناعي</p>
+            <p class="dc-desc">Accreditation guide for AI higher education — 6 qualification types (Diploma to PhD), NQF mapping, and mandatory curriculum units per level.</p>
+          </div>
+          <div class="dc-footer">
+            <span class="dc-meta">SDAIA · 2025 · 38 pp</span>
+            <span class="dc-btn">Open →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relationship map -->
+      <div class="rel-map">
+        <div class="rel-map-title">How these documents connect · كيف ترتبط هذه الوثائق</div>
+        <div class="rel-layer">
+          <span class="rl-label">Foundation</span>
+          <div class="rl-chips">
+            <span class="rel-chip rc1" onclick="openDoc(1)">AI Adoption Framework — the strategic operating system</span>
+          </div>
+        </div>
+        <div class="rel-layer">
+          <span class="rl-label">Ethics</span>
+          <div class="rl-chips">
+            <span class="rel-chip rc3" onclick="openDoc(3)">AI Ethics Principles</span>
+            <span class="rel-chip rc6" onclick="openDoc(6)">GenAI Government Guidelines</span>
+            <span class="rel-chip rc7" onclick="openDoc(7)">GenAI Public Principles</span>
+          </div>
+        </div>
+        <div class="rel-layer">
+          <span class="rl-label">Measurement</span>
+          <div class="rl-chips">
+            <span class="rel-chip rc2" onclick="openDoc(2)">NAII — measures readiness against the framework</span>
+          </div>
+        </div>
+        <div class="rel-layer">
+          <span class="rl-label">People</span>
+          <div class="rl-chips">
+            <span class="rel-chip rc4" onclick="openDoc(4)">NOSF — 16 professional roles</span>
+            <span class="rel-chip rc5" onclick="openDoc(5)">Academic Framework — builds those professionals</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /home-screen -->
+
+    <!-- IFRAME SCREEN -->
+    <div id="iframe-screen">
+      <div class="iframe-toolbar">
+        <div>
+          <div class="iframe-doc-title" id="iframe-title"></div>
+          <div class="iframe-doc-meta" id="iframe-meta"></div>
+        </div>
+        <div class="iframe-spacer"></div>
+        <span class="iframe-hint">Use the tabs inside to switch EN · AR · PDF</span>
+      </div>
+      <iframe class="doc-iframe" id="doc-iframe" src="about:blank" allow="fullscreen"></iframe>
+    </div>
+
+  </div><!-- /main-panel -->
+</div><!-- /app-body -->
+
+<script>
+const docs = {
+  1: { file:'ai_adoption_arabic_brief.html',       en:'AI Adoption Framework',              ar:'إطار تبني الذكاء الاصطناعي',                        meta:'SDAIA · 2025 · Framework · 48 pages' },
+  2: { file:'NAII_reference_brief.html',            en:'National AI Index (NAII)',            ar:'المؤشر الوطني للذكاء الاصطناعي',                    meta:'SDAIA · May 2025 · Index · 21 pages' },
+  3: { file:'aiprinciples_reference_brief.html',    en:'AI Ethics Principles',               ar:'مبادئ أخلاقيات الذكاء الاصطناعي',                   meta:'SDAIA · May 2025 · Regulatory · 50 pages' },
+  4: { file:'File0002_NOSF_reference_brief.html',   en:'National Professional Standards (NOSF)', ar:'الإطار الوطني للمعايير المهنية',                meta:'SDAIA · 2025 · Standards · 86 pages' },
+  5: { file:'File0003_AcademicAI_reference_brief.html', en:'Saudi Academic AI Framework',    ar:'الإطار الأكاديمي لمؤهلات الذكاء الاصطناعي',         meta:'SDAIA · 2025 · Academic · 38 pages' },
+  6: { file:'GenAIGovGuidelines_reference_brief.html', en:'GenAI Principles — Government',  ar:'مبادئ الذكاء الاصطناعي التوليدي للجهات الحكومية',   meta:'SDAIA · 2025 · Guidelines · 30 pages' },
+  7: { file:'GenerativeAIPublic_reference_brief.html', en:'GenAI Principles — Public',      ar:'مبادئ الذكاء الاصطناعي التوليدي للعموم',             meta:'SDAIA · 2025 · Public · 22 pages' },
+};
+
+let current = null;
+
+function openDoc(id) {
+  current = id;
+  const d = docs[id];
+
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  const si = document.getElementById('si-'+id);
+  if (si) si.classList.add('active');
+
+  // Update iframe
+  document.getElementById('doc-iframe').src = d.file;
+  document.getElementById('iframe-title').textContent = d.en + '  ·  ' + d.ar;
+  document.getElementById('iframe-meta').textContent = d.meta;
+
+  // Switch screens
+  document.getElementById('home-screen').classList.add('hidden');
+  const iframe_screen = document.getElementById('iframe-screen');
+  iframe_screen.classList.add('visible');
+
+  // Update nav
+  document.getElementById('breadcrumb').style.display = 'flex';
+  document.getElementById('breadcrumb-doc').textContent = d.en;
+  document.getElementById('back-btn').classList.add('visible');
+}
+
+function showHome() {
+  current = null;
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('home-screen').classList.remove('hidden');
+  document.getElementById('iframe-screen').classList.remove('visible');
+  document.getElementById('breadcrumb').style.display = 'none';
+  document.getElementById('back-btn').classList.remove('visible');
+  document.getElementById('doc-iframe').src = 'about:blank';
+}
+</script>
+</body>
+</html>
