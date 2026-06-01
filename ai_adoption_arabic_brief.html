@@ -26,8 +26,7 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
 .tab.active{color:#1a5c2a;border-bottom-color:#1a5c2a;background:#fff;}
 .tab:hover:not(.active){color:#444;background:#f5f5f2;}
 
-.panel{display:none;}
-.panel.active{display:block;}
+/* panels controlled by JS */
 
 /* ── shared section styles ── */
 .body-wrap{padding:24px 28px;}
@@ -338,10 +337,24 @@ body{font-family:'Inter',Arial,sans-serif;background:#f0efe9;min-height:100vh;pa
 </div>
 <script>
 function show(t){
-  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',['ar','en','pdf'][i]===t));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('p-'+t).classList.add('active');
+  // Remove active from all tabs and panels
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(el){ el.classList.remove('active'); });
+  // Add active to clicked tab
+  var tabMap = {'ar':0,'en':1,'pdf':2};
+  if(tabs[tabMap[t]]) tabs[tabMap[t]].classList.add('active');
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(function(p){ p.style.display='none'; });
+  // Show selected panel
+  var panel = document.getElementById('p-'+t);
+  if(panel) panel.style.display='block';
 }
+// Init: hide all panels, show active one
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.panel').forEach(function(p){ p.style.display='none'; });
+  var active = document.querySelector('.panel.active');
+  if(active) active.style.display='block';
+});
 </script>
 </body>
 </html>
