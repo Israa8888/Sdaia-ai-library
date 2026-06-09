@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>توصية اليونسكو بشأن أخلاقيات الذكاء الاصطناعي — ملخص مرجعي</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0061C2;
+    --blue-dark: #003D7A;
+    --blue-light: #E6F0FB;
+    --blue-mid: #C2D8F5;
+    --ink: #0D1B2A;
+    --ink-soft: #3A4A5C;
+    --ink-muted: #6B7A8D;
+    --bg: #F7F9FC;
+    --white: #FFFFFF;
+    --border: #D4DDE8;
+    --gold: #C8962A;
+    --green: #1A7A5E;
+    --red: #B03030;
+    --teal: #0E7C7B;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans Arabic', 'Tahoma', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.8;
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    background: linear-gradient(135deg, #002855 0%, #005BAC 55%, #0076CE 100%);
+    color: white;
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .doc-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 220px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .issuer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .issuer-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #6DD4FA; }
+  .doc-title-ar {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .doc-title-en {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.8;
+    direction: ltr;
+    text-align: right;
+    margin-bottom: 16px;
+  }
+  .meta-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .meta-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+  .type-badge {
+    background: rgba(109, 212, 250, 0.25);
+    border: 1px solid rgba(109, 212, 250, 0.5);
+    color: #C8EEFF;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    align-self: flex-start;
+    white-space: nowrap;
+  }
+
+  /* ── PURPOSE STRIP ── */
+  .purpose-strip {
+    background: var(--blue-dark);
+    color: white;
+    padding: 20px 48px;
+    font-size: 15px;
+    line-height: 1.8;
+    font-style: normal;
+  }
+  .purpose-strip strong { color: #A8D4FF; }
+
+  /* ── BODY ── */
+  .doc-body {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 28px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .section-label {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--blue-mid);
+  }
+  .section-body {
+    padding: 20px 24px;
+  }
+  .overview-text {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+
+  /* ── AUTHORITY BOX ── */
+  .authority-box {
+    background: #F0F5FB;
+    border-right: 3px solid var(--blue);
+    border-radius: 4px;
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .authority-box strong { color: var(--ink); }
+
+  /* ── STRUCTURE DIAGRAM ── */
+  .structure-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    direction: rtl;
+  }
+  .flow-block {
+    flex: 1;
+    padding: 18px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-block:not(:last-child)::after {
+    content: '←';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--ink-muted);
+    z-index: 2;
+  }
+  .flow-block.values { background: #FFF8E7; border-left: 1px solid var(--border); }
+  .flow-block.principles { background: #E6F0FB; border-left: 1px solid var(--border); }
+  .flow-block.policy { background: #E6F5EE; }
+  .flow-count { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .flow-block.values .flow-count { color: var(--gold); }
+  .flow-block.principles .flow-count { color: var(--blue); }
+  .flow-block.policy .flow-count { color: var(--green); }
+  .flow-label { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+
+  /* ── COLUMNS ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .col-heading {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--blue-mid);
+  }
+
+  /* ── ITEM LIST ── */
+  .item-list { list-style: none; }
+  .item-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid #F0F3F6;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .item-list li:last-child { border-bottom: none; }
+  .item-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .item-num.gold { background: var(--gold); }
+  .item-num.green { background: var(--green); }
+  .item-num.teal { background: var(--teal); }
+  .item-text strong { color: var(--ink); }
+
+  /* ── AUDIENCE PILLS ── */
+  .audience-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .audience-pill {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    border: 1px solid var(--blue-mid);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .audience-pill.green { background: #E6F5EE; color: var(--green); border-color: #B2D9C6; }
+  .audience-pill.gold { background: #FFF8E7; color: #7A5C10; border-color: #E8D5A0; }
+
+  /* ── IMPLICATIONS ── */
+  .impl-list { display: flex; flex-direction: column; gap: 12px; }
+  .impl-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #F7F9FC;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+  .impl-arrow {
+    color: var(--blue);
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .impl-item strong { color: var(--ink); }
+
+  /* ── POLICY GRID ── */
+  .policy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .policy-card {
+    background: #F7F9FC;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .policy-card .policy-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+  .policy-card strong { color: var(--ink); font-size: 13.5px; }
+
+  /* ── LANGUAGE NOTE ── */
+  .lang-note {
+    background: #FFF9EC;
+    border: 1px solid #E8D5A0;
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    font-size: 13.5px;
+    color: #5A4200;
+    line-height: 1.75;
+  }
+  .lang-flag { font-size: 22px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  .ref-footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11.5px;
+    color: var(--ink-muted);
+    text-align: center;
+    direction: rtl;
+  }
+
+  @media (max-width: 680px) {
+    .doc-header { padding: 28px 20px 24px; }
+    .doc-body { padding: 24px 16px 48px; }
+    .purpose-strip { padding: 16px 20px; }
+    .two-col { grid-template-columns: 1fr; }
+    .structure-flow { flex-direction: column; }
+    .flow-block:not(:last-child)::after { content: '↓'; left: auto; bottom: -12px; top: auto; right: 50%; transform: translateX(50%); }
+    .policy-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div class="header-top">
+    <div>
+      <div class="issuer-badge"><span class="dot"></span> اليونسكو · 2021 · 44 صفحة</div>
+      <div class="doc-title-ar">توصية بشأن أخلاقيات الذكاء الاصطناعي</div>
+      <div class="doc-title-en">Recommendation on the Ethics of Artificial Intelligence</div>
+      <div class="meta-pills">
+        <span class="meta-pill">SHS/BIO/PI/2021/1</span>
+        <span class="meta-pill">وثيقة معيارية دولية</span>
+        <span class="meta-pill">193 دولة عضو</span>
+        <span class="meta-pill">نسخة عربية رسمية</span>
+      </div>
+    </div>
+    <div class="type-badge">معيار دولي</div>
+  </div>
+</div>
+
+<!-- PURPOSE STRIP -->
+<div class="purpose-strip">
+  <strong>أول وثيقة معيارية دولية في أخلاقيات الذكاء الاصطناعي</strong>، اعتمدتها جميع الدول الأعضاء الـ 193 في اليونسكو بالإجماع في نوفمبر 2021. تضع هذه التوصية القيم والمبادئ وإجراءات السياسات الكفيلة بتوجيه تطوير الذكاء الاصطناعي ونشره أخلاقياً على المستوى العالمي — بما في ذلك المملكة العربية السعودية ودول مجلس التعاون الخليجي.
+</div>
+
+<!-- BODY -->
+<div class="doc-body">
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">نظرة عامة</div>
+    <div class="section-body">
+      <p class="overview-text">
+        تُعدّ توصية اليونسكو بشأن أخلاقيات الذكاء الاصطناعي وثيقةً معياريةً فارقةً، اعتُمدت في المؤتمر العام الحادي والأربعين لليونسكو في نوفمبر 2021. وبوصفها توصيةً رسميةً في إطار صلاحيات اليونسكو، فإنها لا تُشكّل معاهدةً ملزِمةً قانونياً، غير أنها تحمل سلطةً معياريةً راسخة؛ إذ يُتوقَّع من الدول الأعضاء تنفيذ أحكامها عبر قوانينها وسياساتها الوطنية وأطر الحوكمة لديها، والإبلاغ عن تقدّمها في التطبيق أمام اليونسكو كل أربع سنوات.
+      </p>
+      <br/>
+      <p class="overview-text">
+        لا تُعرِّف الوثيقة الذكاء الاصطناعي تعريفاً ضيّقاً، بل تصف أنظمته بأنها تعالج البيانات بطرق تحاكي السلوك الذكي — مستوعِبةً التعلم الآلي، والتعلم العميق، ومعالجة اللغة الطبيعية، والرؤية الحاسوبية، والتخطيط، والتحسين — عبر جميع مراحل الدورة الحياتية من التصميم والتطوير إلى النشر والتخلص النهائي.
+      </p>
+      <br/>
+      <p class="overview-text">
+        تتبنى الوثيقة منطقاً ثلاثي الطبقات: <strong>4 قيم جوهرية</strong> تُرسّخ الإطار العام، و<strong>11 مبدأً</strong> تُترجم تلك القيم إلى التزامات أخلاقية عملية، و<strong>11 مجالاً للسياسات</strong> تُحدد الميادين الملموسة التي يتعيّن على الحكومات العمل فيها.
+      </p>
+    </div>
+  </div>
+
+  <!-- STRUCTURE DIAGRAM -->
+  <div class="section">
+    <div class="section-label">البنية المعمارية للوثيقة</div>
+    <div class="section-body">
+      <div class="structure-flow">
+        <div class="flow-block values">
+          <div class="flow-count">4</div>
+          <div class="flow-label">قيم جوهرية</div>
+        </div>
+        <div class="flow-block principles">
+          <div class="flow-count">11</div>
+          <div class="flow-label">مبدأً أخلاقياً</div>
+        </div>
+        <div class="flow-block policy">
+          <div class="flow-count">11</div>
+          <div class="flow-label">مجالاً للسياسات</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="col-block">
+          <div class="col-heading">القيم الأربع الجوهرية</div>
+          <ul class="item-list">
+            <li><span class="item-num gold">1</span><span class="item-text"><strong>كرامة الإنسان</strong> — احترام القيمة الذاتية لكل شخص</span></li>
+            <li><span class="item-num gold">2</span><span class="item-text"><strong>البيئة والأنظمة الإيكولوجية</strong> — حماية الأنظمة الطبيعية للأجيال الحالية والقادمة</span></li>
+            <li><span class="item-num gold">3</span><span class="item-text"><strong>التنوع والشمول</strong> — صون التعددية الثقافية والاجتماعية</span></li>
+            <li><span class="item-num gold">4</span><span class="item-text"><strong>المجتمعات السلمية المترابطة</strong> — تعزيز التعاون والازدهار المشترك</span></li>
+          </ul>
+        </div>
+        <div class="col-block">
+          <div class="col-heading">المبادئ الأحد عشر الأخلاقية</div>
+          <ul class="item-list">
+            <li><span class="item-num">1</span><span class="item-text">التناسب وعدم الإضرار</span></li>
+            <li><span class="item-num">2</span><span class="item-text">السلامة والأمن</span></li>
+            <li><span class="item-num">3</span><span class="item-text">الإنصاف وعدم التمييز</span></li>
+            <li><span class="item-num">4</span><span class="item-text">الاستدامة</span></li>
+            <li><span class="item-num">5</span><span class="item-text">الحق في الخصوصية وحماية البيانات</span></li>
+            <li><span class="item-num">6</span><span class="item-text">الرقابة البشرية وحق التقرير</span></li>
+            <li><span class="item-num">7</span><span class="item-text">الشفافية وقابلية التفسير</span></li>
+            <li><span class="item-num">8</span><span class="item-text">المسؤولية والمساءلة</span></li>
+            <li><span class="item-num">9</span><span class="item-text">الوعي ومحو الأمية الرقمية</span></li>
+            <li><span class="item-num">10</span><span class="item-text">الحوكمة متعددة الأطراف والقابلة للتكيّف</span></li>
+            <li><span class="item-num">11</span><span class="item-text">الاستخدام السلمي والمفيد</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 POLICY AREAS -->
+  <div class="section">
+    <div class="section-label">مجالات العمل الإحدى عشرة بشأن السياسات</div>
+    <div class="section-body">
+      <div class="policy-grid">
+        <div class="policy-card">
+          <div class="policy-num">المجال الأول</div>
+          <strong>تقييم العواقب الأخلاقية</strong><br/>
+          يتعيّن على الحكومات وضع منهجيات لتقييم الأثر الأخلاقي (EIA) قبل نشر أنظمة الذكاء الاصطناعي وأثناءه.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الثاني</div>
+          <strong>الحوكمة الأخلاقية والإشراف الأخلاقي</strong><br/>
+          إنشاء هيئات وطنية لأخلاقيات الذكاء الاصطناعي وأطر تنظيمية وآليات رقابية.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الثالث</div>
+          <strong>السياسات الخاصة بالبيانات</strong><br/>
+          حوكمة البيانات وحمايتها وإتاحتها بالتساوي وإدارة دورة حياتها في سياق الذكاء الاصطناعي.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الرابع</div>
+          <strong>التنمية والتعاون الدولي</strong><br/>
+          تجسير الهوّة في مجال الذكاء الاصطناعي بين الدول المتقدمة والنامية ونقل التكنولوجيا.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الخامس</div>
+          <strong>البيئة والنُظم الإيكولوجية</strong><br/>
+          تقليص البصمة البيئية للذكاء الاصطناعي ودعم بنيته التحتية المستدامة.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال السادس</div>
+          <strong>المساواة بين الجنسين</strong><br/>
+          القضاء على التحيز الجنسي في أنظمة الذكاء الاصطناعي وضمان مشاركة المرأة بالتساوي.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال السابع</div>
+          <strong>الثقافة</strong><br/>
+          صون التراث الثقافي والتنوع اللغوي ومنع التجانس الثقافي القسري الذي يفرضه الذكاء الاصطناعي.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الثامن</div>
+          <strong>التربية والتعليم والبحث</strong><br/>
+          محو الأمية بالذكاء الاصطناعي للجميع وإدماج الأخلاقيات في مناهج العلوم والتكنولوجيا والعلوم الاجتماعية.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال التاسع</div>
+          <strong>الاتصال والمعلومات</strong><br/>
+          التصدي للمعلومات المضللة والتحيز الخوارزمي في الإعلام وضمان الوصول إلى المعلومات الموثوقة.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال العاشر</div>
+          <strong>الاقتصاد والعمل</strong><br/>
+          إدارة أثر الذكاء الاصطناعي على سوق العمل وضمان انتقال عادل وحماية العمال.
+        </div>
+        <div class="policy-card">
+          <div class="policy-num">المجال الحادي عشر</div>
+          <strong>الصحة والرفاهية الاجتماعية</strong><br/>
+          الذكاء الاصطناعي الأخلاقي في الرعاية الصحية وضمان تعزيزه للرفاهية لا تقويضها.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHORITY -->
+  <div class="section">
+    <div class="section-label">السلطة المُصدِرة والأساس القانوني</div>
+    <div class="section-body">
+      <div class="authority-box">
+        <strong>الجهة المُصدِرة:</strong> منظمة اليونسكو — منظمة الأمم المتحدة للتربية والعلم والثقافة.<br/><br/>
+        <strong>الوضع القانوني:</strong> توصيةٌ رسميةٌ في إطار صلاحيات اليونسكو — ليست معاهدةً ملزِمة، لكنها تحمل سلطةً معياريةً راسخة. تُبلِّغ الدول الأعضاء عن تقدّمها في التطبيق أمام اليونسكو كل أربع سنوات.<br/><br/>
+        <strong>الأساس:</strong> تستند إلى ميثاق الأمم المتحدة، وقانون حقوق الإنسان الدولي، وأهداف التنمية المستدامة للأمم المتحدة، والدراسة التمهيدية لليونسكو/COMEST عام 2019 بشأن أخلاقيات الذكاء الاصطناعي، وإعلانات اليونسكو المتعلقة بالتنوع الثقافي وأخلاقيات علم الأحياء ومجتمع المعلومات.<br/><br/>
+        <strong>الالتزام الرئيسي:</strong> ستضع اليونسكو منهجيةً لإجراء <em>تقييمات الأثر الأخلاقي (EIA)</em> لتقنيات الذكاء الاصطناعي، وستقدم دعمها للدول الأعضاء في تقييم استعدادها عبر الأبعاد العلمية والاقتصادية والقانونية والتنظيمية والثقافية.
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE -->
+  <div class="section">
+    <div class="section-label">الجهات المعنية بهذه الوثيقة</div>
+    <div class="section-body">
+      <div class="audience-row">
+        <span class="audience-pill">الحكومات الوطنية وصانعو السياسات</span>
+        <span class="audience-pill">الجهات التنظيمية</span>
+        <span class="audience-pill">باحثو الذكاء الاصطناعي ومطوروه</span>
+        <span class="audience-pill green">المنظمات الدولية</span>
+        <span class="audience-pill green">المجتمع المدني والمنظمات غير الحكومية</span>
+        <span class="audience-pill gold">القطاع الخاص وشركات التقنية</span>
+        <span class="audience-pill gold">المؤسسات الأكاديمية</span>
+        <span class="audience-pill">هيئة SDAIA / مركز ICAIRE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPLICATIONS FOR ICAIRE -->
+  <div class="section">
+    <div class="section-label">الانعكاسات على بحوث ICAIRE</div>
+    <div class="section-body">
+      <div class="impl-list">
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>تقييم الأثر الأخلاقي (EIA) التزامٌ أممي.</strong> ينبغي تقييم كل بحث أو أداة أو مشروع يدعمه أو ينشره ICAIRE من خلال منظور EIA. يمكن لـ ICAIRE تطوير ونشر منهجيات تقييم الأثر الأخلاقي المصمَّمة خصيصاً للسياق السعودي والخليجي — وهي فجوة بحثية عالية القيمة وندرة في الأدبيات الحالية.</div>
+        </div>
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>بحوث محو الأمية بالذكاء الاصطناعي والتعليم (المجال الثامن)</strong> أولويةٌ صريحة لدى اليونسكو. الدراسات المتعلقة بتعليم الذكاء الاصطناعي وجاهزية القوى العاملة والفهم العام تتوافق مع أولويات اليونسكو وتحظى بتمويل دولي مرتفع.</div>
+        </div>
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>المساواة بين الجنسين في الذكاء الاصطناعي (المجال السادس)</strong> تأكيدٌ سياساتي مطلوب من اليونسكو. الأبحاث التي تدرس التحيز الجنسي في أنظمة الذكاء الاصطناعي أو مشاركة المرأة في تطوير الذكاء الاصطناعي تحظى بدعم صريح من هذه التوصية.</div>
+        </div>
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>بحوث حوكمة البيانات (المجال الثالث)</strong> أولويةٌ استراتيجية. يمكن لـ ICAIRE نشر أبحاث مقارنة حول كيفية توافق سياسات البيانات الوطنية في المملكة العربية السعودية أو تباينها مع المعايير الدولية لليونسكو.</div>
+        </div>
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>مسيرة المملكة العربية السعودية نحو الامتثال</strong> لهذه التوصية — ومدى توافق أطر SDAIA مع معايير اليونسكو — موضوعٌ بحثي مشروع ومهم يمكن لـ ICAIRE استكشافه ونشره على المستوى العالمي.</div>
+        </div>
+        <div class="impl-item">
+          <div class="impl-arrow">←</div>
+          <div><strong>سلطة الاستشهاد:</strong> هذا المرجع الأرفع مستوىً على الصعيد الدولي في أخلاقيات الذكاء الاصطناعي. ينبغي أن تستشهد كل منشورات ICAIRE التي تتناول الأخلاقيات بهذه التوصية باعتبارها الإطار المعياري العالمي الأساسي، جنباً إلى جنب مع أطر SDAIA الوطنية.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGE NOTE -->
+  <div class="lang-note">
+    <div class="lang-flag">🌐</div>
+    <div class="lang-text">
+      <strong>نسختان رسميتان في هذه المكتبة:</strong><br/>
+      <strong>381137ara.pdf</strong> — النسخة العربية الرسمية لليونسكو (44 صفحة) &nbsp;|&nbsp;
+      <strong>381137eng.pdf</strong> — النسخة الإنجليزية (44 صفحة).<br/>
+      كلا النسختين متطابقتان في المحتوى وتحملان القوة المعيارية ذاتها. استخدم النسخة العربية عند الاستناد إلى هذا الإطار في المنشورات باللغة العربية أو للجمهور الخليجي والعربي؛ والنسخة الإنجليزية للتقديمات والتعاون الدولي.
+    </div>
+  </div>
+
+  <!-- RELATED DOCUMENTS -->
+  <div class="section">
+    <div class="section-label">الوثائق ذات الصلة في مكتبة ICAIRE</div>
+    <div class="section-body">
+      <div class="audience-row">
+        <span class="audience-pill">مبادئ أخلاقيات الذكاء الاصطناعي (SDAIA)</span>
+        <span class="audience-pill">إطار اعتماد الذكاء الاصطناعي (SDAIA)</span>
+        <span class="audience-pill">مبادئ الذكاء الاصطناعي التوليدي للحكومات</span>
+        <span class="audience-pill">تقرير الذكاء الاصطناعي التوليدي للعموم</span>
+        <span class="audience-pill">مبادئ أخلاقيات التزييف العميق</span>
+        <span class="audience-pill">المؤشر الوطني للذكاء الاصطناعي (NAII)</span>
+        <span class="audience-pill">الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي</span>
+        <span class="audience-pill">الإطار السعودي لمؤهلات تخصصات الذكاء الاصطناعي</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-footer">
+    ملخص مرجعي معدٌّ لقسم البحوث في مركز ICAIRE &nbsp;·&nbsp; المصدر: توصية اليونسكو بشأن أخلاقيات الذكاء الاصطناعي، 2021 (SHS/BIO/PI/2021/1) &nbsp;·&nbsp; الملفات: 381137ara.pdf و 381137eng.pdf
+  </div>
+
+</div>
+</body>
+</html>
